@@ -2,28 +2,24 @@ import { InquireForm } from "@/components/inquire-form";
 
 const destinations = [
   {
-    name: "Hanoi",
+    name: "Hanoi & Ninh Bình",
     detail: "Old Quarter walks, temple quiet, and Friday night dinners arranged before sundown.",
-    image:
-      "https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1600&q=80",
+    image: "/destinations/hanoi.jpg",
   },
   {
     name: "Hạ Long Bay",
     detail: "Private junk charters timed around Shabbat — limestone silence without the cruise crowds.",
-    image:
-      "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1600&q=80",
+    image: "/destinations/halong.jpg",
   },
   {
-    name: "Hội An",
+    name: "Đà Nẵng & Hội An",
     detail: "Lantern evenings, tailor visits, and riverside hotels with kitchen access for your cook.",
-    image:
-      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1600&q=80",
+    image: "/destinations/hoian.jpg",
   },
   {
     name: "Sài Gòn",
     detail: "Modern kosher options, community connections, and Mekong day trips that return before candle lighting.",
-    image:
-      "https://images.unsplash.com/photo-1583417267826-aebc4d1542e1?auto=format&fit=crop&w=1600&q=80",
+    image: "/destinations/saigon.jpg",
   },
 ];
 
@@ -97,8 +93,8 @@ export function Hero() {
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2400&q=80"
-          alt="Limestone karsts rising from Hạ Long Bay at dusk"
+          src="/destinations/halong.jpg"
+          alt="Limestone karsts rising from Hạ Long Bay"
           className="hero-media h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/88 via-ink/55 to-ink/25" />
