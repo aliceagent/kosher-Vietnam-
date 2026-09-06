@@ -187,11 +187,10 @@ export function Destinations() {
       </div>
 
       <div className="flex flex-col">
-        {destinations.map((place, index) => (
+        {destinations.map((place) => (
           <article
             key={place.name}
-            className="reveal group relative min-h-[70vh] overflow-hidden border-t border-mist/10"
-            style={{ transitionDelay: `${index * 60}ms` }}
+            className="group relative min-h-[70vh] overflow-hidden border-t border-mist/10"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -201,7 +200,7 @@ export function Destinations() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/45 to-transparent" />
             <div className="relative z-10 flex min-h-[70vh] max-w-7xl items-end px-6 py-16 md:px-10 md:py-20">
-              <div className="max-w-lg">
+              <div className="reveal max-w-lg">
                 <h3 className="font-display text-4xl font-medium md:text-6xl">{place.name}</h3>
                 <p className="mt-4 text-base leading-relaxed text-mist/80 md:text-lg">{place.detail}</p>
               </div>
