@@ -174,13 +174,13 @@ export function PromiseSection() {
 export function Destinations() {
   return (
     <section id="destinations" className="bg-ink text-mist">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-20">
         <div className="reveal max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-lantern-soft/80">Destinations</p>
-          <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">
+          <h2 className="mt-3 font-display text-4xl font-medium md:text-5xl">
             Four places. One continuous path.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-mist/75">
+          <p className="mt-4 text-lg leading-relaxed text-mist/75">
             Each stop is chosen for atmosphere — and for how well it supports kosher dining and Shabbat rest.
           </p>
         </div>
