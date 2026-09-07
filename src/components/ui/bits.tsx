@@ -55,6 +55,18 @@ export function Trust({ item }: { item: Verification }) {
   );
 }
 
+export function DedicationBanner() {
+  return (
+    <aside className="bg-lantern px-4 py-2.5 text-center text-ink" aria-label="Dedication">
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Filled by</p>
+      <p className="font-display text-[1.35rem] font-semibold leading-tight">
+        Jonathan Caras <span className="font-sans text-[0.7rem] font-bold uppercase tracking-[0.14em]">for</span>{" "}
+        Shimon Greenspan
+      </p>
+    </aside>
+  );
+}
+
 export function Disclaimer() {
   return (
     <p className="text-xs font-medium leading-relaxed text-stone">
