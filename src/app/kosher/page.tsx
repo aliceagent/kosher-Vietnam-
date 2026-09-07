@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Actions, Card, PageIntro, Trust } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getDestination, getVenues } from "@/lib/content";
 
 export const metadata = { title: "Kosher food in Vietnam" };
@@ -16,10 +17,13 @@ export default function KosherPage() {
           const dest = getDestination(item.destinationSlug);
           return (
             <Card key={item.id}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-lacquer">
-                {item.kashrutClass.replace("-", " ")} · {dest?.name}
-              </p>
-              <h2 className="mt-1 font-display text-2xl">{item.name}</h2>
+              <CardHeading
+                icon="bowl"
+                kicker={`${item.kashrutClass.replace("-", " ")} · ${dest?.name}`}
+                title={item.name}
+                kickerClass="text-lacquer"
+                tone="lacquer"
+              />
               <p className="mt-2 text-sm text-stone">{item.address}</p>
               <p className="mt-2 text-sm text-stone">{item.notes}</p>
               <Actions phone={item.phone} whatsapp={item.whatsapp} website={item.website} mapsQuery={item.mapsQuery} />

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getDestinations } from "@/lib/content";
 
 export const metadata = { title: "Traveling with kids" };
@@ -22,7 +23,7 @@ export default function FamilyPage() {
       <div className="mt-5 space-y-3 px-4">
         {bands.map((band) => (
           <Card key={band.id}>
-            <h2 className="font-display text-xl">{band.label}</h2>
+            <CardHeading icon="family" title={band.label} titleClass="font-display text-xl leading-tight text-ink" />
             <p className="mt-2 text-sm leading-relaxed text-stone">{band.note}</p>
             <ul className="mt-3 space-y-2">
               {dests.map((dest) =>

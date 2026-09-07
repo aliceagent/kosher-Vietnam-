@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getAirportGuides } from "@/lib/content";
 
 export const metadata = { title: "Airport arrivals" };
@@ -14,8 +15,7 @@ export default function AirportsIndex() {
         {getAirportGuides().map((item) => (
           <Link key={item.code} href={`/guides/airports/${item.code.toLowerCase()}`}>
             <Card>
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{item.code}</p>
-              <h2 className="mt-1 font-display text-2xl">{item.name}</h2>
+              <CardHeading icon="plane" kicker={item.code} title={item.name} />
               <p className="mt-2 text-sm text-stone">{item.fridayNote}</p>
             </Card>
           </Link>

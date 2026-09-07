@@ -2,6 +2,7 @@
 
 import { toggleCheck } from "@/lib/storage";
 import { notifyStorage, useChecks } from "@/lib/use-local";
+import { CardHeading, iconForHeading } from "@/components/ui/icons";
 import type { ChecklistItem } from "@/lib/schema";
 
 export function Checklist({ items }: { items: ChecklistItem[] }) {
@@ -12,7 +13,7 @@ export function Checklist({ items }: { items: ChecklistItem[] }) {
     <div className="space-y-5">
       {sections.map((section) => (
         <section key={section}>
-          <h2 className="font-display text-2xl text-ink">{section}</h2>
+          <CardHeading icon={iconForHeading(section)} title={section} />
           <ul className="mt-3 space-y-2">
             {items
               .filter((item) => item.section === section)

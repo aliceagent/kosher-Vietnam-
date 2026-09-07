@@ -1,4 +1,5 @@
 import { Card, Disclaimer, PageIntro } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { shabbatCities } from "@/lib/content";
 import { formatLongDate } from "@/lib/format";
 import { getUpcomingShabbat } from "@/lib/shabbat";
@@ -20,7 +21,7 @@ export default function ShabbatPage() {
           const times = getUpcomingShabbat(city.slug);
           return (
             <Card key={city.slug}>
-              <h2 className="font-display text-2xl">{city.name}</h2>
+              <CardHeading icon="flame" title={city.name} tone="lantern" />
               <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
                 <div>
                   <p className="font-semibold text-stone">Candles</p>

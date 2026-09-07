@@ -8,6 +8,7 @@ import { formatWalk } from "@/lib/geo";
 import type { GeoPoint, MapPin } from "@/lib/schema";
 import { useSaved } from "@/lib/use-local";
 import { ShabbatMap } from "@/components/map/shabbat-map";
+import { CardHeading, iconForMapKind } from "@/components/ui/icons";
 
 type Mode = "explore" | "shabbat" | "kids" | "saved" | "near";
 
@@ -110,8 +111,13 @@ export function MapExplorer({
         <ul className="mt-3 space-y-3">
           {filtered.map((pin) => (
             <li key={pin.id} className="rounded-2xl bg-white p-4">
-              <p className="font-semibold text-ink">{pin.title}</p>
-              <p className="text-xs font-medium uppercase tracking-[0.12em] text-jade">{pin.kind}</p>
+              <CardHeading
+                icon={iconForMapKind(pin.kind)}
+                kicker={pin.kind}
+                title={pin.title}
+                titleAs="p"
+                titleClass="font-semibold text-ink"
+              />
               <p className="mt-1 text-sm text-stone">{pin.blurb}</p>
               {pin.address ? <p className="mt-1 text-sm text-ink">{pin.address}</p> : null}
               {pin.addressVi ? <p className="text-xs text-stone">{pin.addressVi}</p> : null}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { setSubmissionStatus } from "@/lib/storage";
 import { notifyStorage, useSubmissions } from "@/lib/use-local";
 
@@ -15,13 +16,19 @@ export default function QueuePage() {
       <div className="mt-5 space-y-3 px-4">
         {rows.length === 0 ? (
           <Card>
-            <p className="text-sm text-stone">Queue is empty. Submit a correction from /submit to see it here.</p>
+            <CardHeading icon="checklist" title="Queue is empty" titleClass="font-display text-xl leading-tight text-ink" />
+            <p className="mt-2 text-sm text-stone">Queue is empty. Submit a correction from /submit to see it here.</p>
           </Card>
         ) : (
           rows.map((row) => (
             <Card key={row.id}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-lacquer">{row.status}</p>
-              <h2 className="mt-1 font-display text-xl">{row.place}</h2>
+              <CardHeading
+                icon="chat"
+                kicker={row.status}
+                title={row.place}
+                titleClass="font-display text-xl leading-tight text-ink"
+                kickerClass="text-lacquer"
+              />
               <p className="text-xs text-muted">
                 {row.kind} · {row.email}
               </p>

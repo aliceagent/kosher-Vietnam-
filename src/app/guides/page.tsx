@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading, iconForGuideKicker } from "@/components/ui/icons";
 import { getGuides } from "@/lib/content";
 
 export const metadata = { title: "Vietnam travel guides" };
@@ -21,8 +22,7 @@ export default function GuidesIndex() {
         {extras.map((item) => (
           <Link key={item.href} href={item.href}>
             <Card>
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{item.kicker}</p>
-              <h2 className="mt-1 font-display text-2xl">{item.title}</h2>
+              <CardHeading icon={iconForGuideKicker(item.kicker)} kicker={item.kicker} title={item.title} />
               <p className="mt-2 text-sm text-stone">{item.summary}</p>
             </Card>
           </Link>
@@ -30,8 +30,7 @@ export default function GuidesIndex() {
         {getGuides().map((item) => (
           <Link key={item.slug} href={`/guides/${item.slug}`}>
             <Card>
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{item.kicker}</p>
-              <h2 className="mt-1 font-display text-2xl">{item.title}</h2>
+              <CardHeading icon={iconForGuideKicker(item.kicker)} kicker={item.kicker} title={item.title} />
               <p className="mt-2 text-sm text-stone">{item.summary}</p>
             </Card>
           </Link>

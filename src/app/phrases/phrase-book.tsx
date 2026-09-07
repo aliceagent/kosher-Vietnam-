@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { CopyButton } from "@/components/copy-button";
 import { SaveButton } from "@/components/save/save-button";
 import { Card } from "@/components/ui/bits";
+import { CardHeading, iconForPhrase } from "@/components/ui/icons";
 import type { Phrase, PhraseCategory } from "@/lib/schema";
 
 const cats: { id: PhraseCategory | "all"; label: string }[] = [
@@ -48,9 +49,12 @@ export function PhraseBook({ phrases }: { phrases: Phrase[] }) {
       <div className="mt-4 space-y-3">
         {rows.map((item) => (
           <Card key={item.id ?? item.en}>
-            <p id={item.id} className="font-semibold text-ink">
-              {item.en}
-            </p>
+            <CardHeading
+              icon={iconForPhrase(item.category)}
+              title={<span id={item.id}>{item.en}</span>}
+              titleAs="p"
+              titleClass="font-semibold text-ink"
+            />
             <p className="mt-1 text-lg text-ink">{item.vi}</p>
             <p className="text-sm text-stone">{item.say}</p>
             {item.caution ? <p className="mt-2 text-xs font-medium text-lacquer">{item.caution}</p> : null}

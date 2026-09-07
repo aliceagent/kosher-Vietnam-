@@ -1,4 +1,5 @@
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading, Icon, type IconName } from "@/components/ui/icons";
 import { fridayHelp, hospitalNotes, nationalNumbers } from "@/content/emergencies";
 
 export const metadata = { title: "Emergency" };
@@ -17,13 +18,16 @@ export default function EmergencyPage() {
               href={`tel:${item.value}`}
               className="rounded-2xl bg-lacquer px-2 py-4 text-center text-mist"
             >
+              <span className="mx-auto mb-1 flex justify-center text-mist">
+                <Icon name={emergencyIcon(item.label)} />
+              </span>
               <p className="text-2xl font-semibold">{item.value}</p>
               <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em]">{item.label}</p>
             </a>
           ))}
         </div>
         <Card>
-          <h2 className="font-display text-2xl">{fridayHelp.title}</h2>
+          <CardHeading icon="flame" title={fridayHelp.title} tone="lantern" />
           <ol className="mt-3 list-decimal space-y-2 pl-4 text-sm text-stone">
             {fridayHelp.steps.map((step) => (
               <li key={step}>{step}</li>
@@ -32,12 +36,12 @@ export default function EmergencyPage() {
         </Card>
         {hospitalNotes.map((item) => (
           <Card key={item.city}>
-            <h2 className="font-display text-xl">{item.city}</h2>
+            <CardHeading icon="plus" title={item.city} titleClass="font-display text-xl leading-tight text-ink" />
             <p className="mt-2 text-sm text-stone">{item.body}</p>
           </Card>
         ))}
         <Card>
-          <h2 className="font-display text-xl">Lost documents</h2>
+          <CardHeading icon="papers" title="Lost documents" titleClass="font-display text-xl leading-tight text-ink" />
           <p className="mt-2 text-sm text-stone">
             Passport: contact your embassy and file a police report. Cards: freeze in the issuer app, then
             email your insurer. Phone theft: Grab still works from a hotel desk if you have the account.
@@ -46,4 +50,10 @@ export default function EmergencyPage() {
       </div>
     </main>
   );
+}
+
+function emergencyIcon(label: string): IconName {
+  if (label === "Fire") return "alert";
+  if (label === "Ambulance") return "plus";
+  return "alert";
 }

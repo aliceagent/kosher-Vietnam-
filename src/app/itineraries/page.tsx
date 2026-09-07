@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getItineraries } from "@/lib/content";
 
 export const metadata = { title: "Shabbat-aware itineraries" };
@@ -14,10 +15,7 @@ export default function ItinerariesPage() {
         {getItineraries().map((item) => (
           <Link key={item.slug} href={`/itineraries/${item.slug}`}>
             <Card>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-lacquer">
-                {item.days} days
-              </p>
-              <h2 className="mt-1 font-display text-2xl">{item.title}</h2>
+              <CardHeading icon="calendar" kicker={`${item.days} days`} title={item.title} kickerClass="text-lacquer" />
               <p className="mt-2 text-sm text-stone">{item.summary}</p>
             </Card>
           </Link>

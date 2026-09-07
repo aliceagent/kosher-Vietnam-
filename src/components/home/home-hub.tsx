@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { Card, ChipLink, Disclaimer, Kicker, PrimaryLink } from "@/components/ui/bits";
+import { CardHeading, IconMark, type IconName } from "@/components/ui/icons";
 import { getDestinations } from "@/lib/content";
 import { formatLongDate } from "@/lib/format";
 import { getUpcomingShabbat } from "@/lib/shabbat";
 
-const actions = [
-  { href: "/plan", label: "Plan around Shabbat" },
-  { href: "/kosher", label: "Find kosher food" },
-  { href: "/chabad", label: "Find Chabad" },
-  { href: "/shabbat", label: "Shabbat times" },
-  { href: "/vietnam/things-to-do", label: "Things to do" },
-  { href: "/today", label: "What today?" },
+const actions: { href: string; label: string; icon: IconName }[] = [
+  { href: "/plan", label: "Plan around Shabbat", icon: "route" },
+  { href: "/kosher", label: "Find kosher food", icon: "bowl" },
+  { href: "/chabad", label: "Find Chabad", icon: "building" },
+  { href: "/shabbat", label: "Shabbat times", icon: "flame" },
+  { href: "/vietnam/things-to-do", label: "Things to do", icon: "pin" },
+  { href: "/today", label: "What today?", icon: "sun" },
 ];
 
 export function HomeHub() {
@@ -52,12 +53,7 @@ export function HomeHub() {
 
       <section className="px-4 py-5">
         <Card className="border border-jade/15 bg-white text-ink">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-lacquer">
-            Upcoming Shabbat
-          </p>
-          <p className="mt-2 font-display text-2xl font-semibold text-ink">
-            {formatLongDate(shabbat.friday)}
-          </p>
+          <CardHeading icon="flame" kicker="Upcoming Shabbat" title={formatLongDate(shabbat.friday)} kickerClass="text-lacquer" tone="lantern" />
           <p className="mt-1 text-sm font-medium text-stone">
             {shabbat.parsha} · {shabbat.hebrewDate}
           </p>
@@ -83,8 +79,9 @@ export function HomeHub() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex min-h-16 items-center rounded-2xl border border-jade/15 bg-white px-3 text-sm font-bold text-ink"
+              className="flex min-h-16 items-center gap-3 rounded-2xl border border-jade/15 bg-white px-3 text-sm font-bold text-ink"
             >
+              <IconMark name={item.icon} size="sm" tone={item.icon === "flame" ? "lantern" : "jade"} />
               {item.label}
             </Link>
           ))}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Checklist } from "@/app/guides/before/checklist";
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getAirportGuides, getChecklist } from "@/lib/content";
 
 export const metadata = { title: "Before you go" };
@@ -33,7 +34,8 @@ export default function BeforeYouGoPage() {
       </div>
       <div className="mt-5 px-4">
         <Card className="mb-4">
-          <p className="text-sm leading-relaxed text-stone">
+          <CardHeading icon="alert" title="Not a visa table" titleClass="font-display text-xl leading-tight text-ink" tone="lacquer" />
+          <p className="mt-2 text-sm leading-relaxed text-stone">
             Orah is not a visa table, a clinic, or a rav. Check official government pages and your own posek for
             anything that matters on Friday.
           </p>

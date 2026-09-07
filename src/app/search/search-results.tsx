@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { SearchCard } from "@/components/search/search-card";
 import { inputClass } from "@/components/ui/bits";
+import { IconMark } from "@/components/ui/icons";
 import { groupHits, searchSite, type SearchHit } from "@/lib/search";
 
 type KimiCard = {
@@ -128,7 +129,8 @@ export function SearchResults({ initial }: { initial: string }) {
             </p>
           </div>
           {loading && kimiCards.length === 0 ? (
-            <div className="rounded-2xl bg-white px-4 py-3 text-sm text-stone shadow-[0_1px_0_rgba(7,26,20,0.08)]">
+            <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 text-sm text-stone shadow-[0_1px_0_rgba(7,26,20,0.08)]">
+              <IconMark name="spark" tone="lantern" size="sm" />
               Asking Kimi HighSpeed…
             </div>
           ) : null}

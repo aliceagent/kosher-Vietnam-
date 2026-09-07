@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Card, Field, inputClass } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { airports, estimateFriday } from "@/lib/friday";
 import { buildPlan } from "@/lib/planner";
 import type { Destination } from "@/lib/schema";
@@ -185,9 +186,13 @@ export function TripPlanner({
       </div>
 
       <Card>
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-jade">
-          {plan.nights} nights · {plan.fridays.length} Shabbat{plan.fridays.length === 1 ? "" : "s"}
-        </p>
+        <CardHeading
+          icon="flame"
+          kicker={`${plan.nights} nights · ${plan.fridays.length} Shabbat${plan.fridays.length === 1 ? "" : "s"}`}
+          title="Shabbat stops"
+          titleClass="font-display text-xl leading-tight text-ink"
+          tone="lantern"
+        />
         <div className="mt-3 space-y-3">
           {plan.shabbatStops.map((stop) => (
             <div key={stop.friday.toISOString()} className="border-t border-jade/10 pt-3 first:border-0 first:pt-0">
@@ -206,8 +211,15 @@ export function TripPlanner({
           key={item.title}
           className={item.level === "block" ? "border border-lacquer/40" : ""}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-lacquer">{item.level}</p>
-          <p className="mt-1 font-semibold text-ink">{item.title}</p>
+          <CardHeading
+            icon="alert"
+            kicker={item.level}
+            title={item.title}
+            titleClass="font-semibold text-ink"
+            titleAs="p"
+            kickerClass="text-lacquer"
+            tone="lacquer"
+          />
           <p className="mt-1 text-sm leading-relaxed text-stone">{item.body}</p>
         </Card>
       ))}
@@ -217,10 +229,13 @@ export function TripPlanner({
         <p className="text-sm text-stone">Rules, not an LLM. Confirm meals and the current Chabad pin before you book.</p>
         {plan.days.map((day) => (
           <Card key={day.date}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
-              {day.date} · {day.destName}
-              {day.shabbat ? " · Shabbat" : ""}
-            </p>
+            <CardHeading
+              icon={day.shabbat ? "flame" : "calendar"}
+              kicker={`${day.date}${day.shabbat ? " · Shabbat" : ""}`}
+              title={day.destName}
+              titleClass="font-display text-xl leading-tight text-ink"
+              tone={day.shabbat ? "lantern" : "jade"}
+            />
             <ul className="mt-3 space-y-2">
               {day.blocks.map((block) => (
                 <li key={`${day.date}-${block.start}-${block.title}`} className="border-t border-jade/10 pt-2 first:border-0 first:pt-0">
@@ -288,12 +303,13 @@ export function FridayPlanner({
 
       {result.ok ? (
         <Card>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-lacquer">
-            {result.verdict === "likely" ? "Looks possible" : result.verdict === "tight" ? "Tight" : "Unlikely"}
-          </p>
-          <p className="mt-2 font-display text-2xl">
-            Ready ~ {formatTime(result.ready, result.hotel.tzid)} · candles {result.candlesLabel}
-          </p>
+          <CardHeading
+            icon="clock"
+            kicker={result.verdict === "likely" ? "Looks possible" : result.verdict === "tight" ? "Tight" : "Unlikely"}
+            title={`Ready ~ ${formatTime(result.ready, result.hotel.tzid)} · candles ${result.candlesLabel}`}
+            kickerClass="text-lacquer"
+            tone="lantern"
+          />
           <p className="mt-2 text-sm text-stone">
             Buffer after food pickup: {result.bufferMinutes} minutes. We baked in immigration{" "}
             {result.steps.immigration}m, bags {result.steps.baggage}m, transfer {result.steps.transfer}m,

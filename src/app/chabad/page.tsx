@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Actions, Card, PageIntro, Trust } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getCommunities, getDestination } from "@/lib/content";
 
 export const metadata = { title: "Chabad in Vietnam" };
@@ -13,10 +14,11 @@ export default function ChabadPage() {
       <div className="mt-5 space-y-3 px-4">
         {getCommunities().map((item) => (
           <Card key={item.id}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
-              {getDestination(item.destinationSlug)?.name}
-            </p>
-            <h2 className="mt-1 font-display text-2xl">{item.name}</h2>
+            <CardHeading
+              icon="building"
+              kicker={getDestination(item.destinationSlug)?.name}
+              title={item.name}
+            />
             <p className="mt-2 text-sm text-stone">{item.address}</p>
             <Actions phone={item.phone} whatsapp={item.whatsapp} website={item.website} mapsQuery={item.mapsQuery} />
             <Trust item={item.verification} />

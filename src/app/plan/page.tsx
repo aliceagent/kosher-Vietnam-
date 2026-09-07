@@ -1,5 +1,6 @@
 import { FridayPlanner, TripPlanner } from "@/components/plan/trip-tools";
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getDestinations } from "@/lib/content";
 import { nextFriday } from "@/lib/shabbat";
 
@@ -32,7 +33,8 @@ export default function PlanPage() {
         <section id="friday">
           <h2 className="mb-3 font-display text-2xl">Can I make Friday?</h2>
           <Card className="mb-3">
-            <p className="text-sm text-stone">
+            <CardHeading icon="clock" title="Friday buffer" titleClass="font-display text-xl leading-tight text-ink" />
+            <p className="mt-2 text-sm text-stone">
               Landing time plus immigration, bags, traffic, check-in, and food pickup — then compare to
               candles. Leave a serious buffer.
             </p>

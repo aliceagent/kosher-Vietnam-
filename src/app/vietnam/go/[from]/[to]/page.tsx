@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, PageIntro, Trust } from "@/components/ui/bits";
+import { CardHeading, iconForTransport } from "@/components/ui/icons";
 import { getDestination, getRouteBetween, getRoutes } from "@/lib/content";
 import { notFound } from "next/navigation";
 
@@ -37,7 +38,7 @@ export default async function RoutePage({ params }: PageProps<"/vietnam/go/[from
       </div>
       <div className="mt-5 space-y-3 px-4">
         <Card>
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">If you have kids</p>
+          <CardHeading icon="family" kicker="If you have kids" title="Who this route fits" titleClass="font-display text-xl leading-tight text-ink" />
           <p className="mt-2 text-sm leading-relaxed text-stone">{route.recommendation.family}</p>
           <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.16em] text-jade">Backpacker</p>
           <p className="mt-2 text-sm leading-relaxed text-stone">{route.recommendation.backpacker}</p>
@@ -49,8 +50,11 @@ export default async function RoutePage({ params }: PageProps<"/vietnam/go/[from
         </Card>
         {route.options.map((opt) => (
           <Card key={opt.name}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{opt.mode.replace("-", " ")}</p>
-            <h2 className="mt-1 font-display text-2xl">{opt.name}</h2>
+            <CardHeading
+              icon={iconForTransport(opt.mode)}
+              kicker={opt.mode.replace("-", " ")}
+              title={opt.name}
+            />
             <p className="mt-2 text-sm font-medium text-stone">
               {Math.round(opt.durationMin / 60)}–{Math.round(opt.durationMax / 60)} h · {opt.cost}
             </p>

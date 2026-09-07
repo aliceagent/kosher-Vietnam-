@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ShabbatMap } from "@/components/map/shabbat-map";
 import { SaveButton } from "@/components/save/save-button";
 import { AttractionCard } from "@/components/things/attraction-card";
-import { Actions, Card, Disclaimer, Kicker, Trust } from "@/components/ui/bits";
+import { Actions, Card, Disclaimer, Trust } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getNeighborhoods, getRoute, getRoutesFrom } from "@/lib/content";
 import { hasFlag, interestRails, topMustDos } from "@/lib/filters";
 import { pinsForCity } from "@/lib/map-pins";
@@ -132,7 +133,7 @@ export function DestinationView({
           ) : null}
           <div className="mt-4 grid gap-3">
             <Card>
-              <Kicker>Why visit</Kicker>
+              <CardHeading icon="star" title="Why visit" titleAs="p" titleClass="text-[11px] font-bold uppercase tracking-[0.22em] text-jade" />
               <p className="mt-2 text-sm leading-relaxed text-stone">{dest.whyVisit}</p>
               {dest.whoWillLove ? <p className="mt-2 text-sm leading-relaxed text-stone">{dest.whoWillLove}</p> : null}
               {dest.whoMightNot ? (
@@ -140,18 +141,18 @@ export function DestinationView({
               ) : null}
             </Card>
             <Card>
-              <Kicker>How long</Kicker>
+              <CardHeading icon="clock" title="How long" titleAs="p" titleClass="text-[11px] font-bold uppercase tracking-[0.22em] text-jade" />
               <p className="mt-2 text-sm leading-relaxed text-stone">{dest.howLong}</p>
             </Card>
             <Card>
-              <Kicker>Weather</Kicker>
+              <CardHeading icon="cloud" title="Weather" titleAs="p" titleClass="text-[11px] font-bold uppercase tracking-[0.22em] text-jade" />
               <p className="mt-2 text-sm leading-relaxed text-stone">
                 Best: {dest.weather.bestMonths}. Rain: {dest.weather.rainy}. {dest.weather.notes}
               </p>
             </Card>
             {dest.dailyBudget ? (
               <Card>
-                <Kicker>Spend (non-kosher street food not included)</Kicker>
+                <CardHeading icon="coins" title="Spend (non-kosher street food not included)" titleAs="p" titleClass="text-[11px] font-bold uppercase tracking-[0.22em] text-jade" />
                 <p className="mt-2 text-sm leading-relaxed text-stone">
                   {dest.dailyBudget.low}. {dest.dailyBudget.typical}. {dest.dailyBudget.note}
                 </p>
@@ -217,8 +218,8 @@ export function DestinationView({
             <div className="mt-3 space-y-3">
               {neighborhoods.map((item) => (
                 <Card key={item.id}>
-                  <h3 className="font-display text-xl">{item.name}</h3>
-                  {item.localName ? <p className="text-sm text-stone">{item.localName}</p> : null}
+                  <CardHeading icon="building" title={item.name} titleAs="h3" titleClass="font-display text-xl leading-tight text-ink" />
+                  {item.localName ? <p className="mt-1 text-sm text-stone">{item.localName}</p> : null}
                   <p className="mt-2 text-sm leading-relaxed text-stone">{item.whyStay}</p>
                   <p className="mt-2 text-sm text-stone">{item.atmosphere}</p>
                   <p className="mt-1 text-sm text-stone">{item.familyFit}</p>
@@ -237,7 +238,8 @@ export function DestinationView({
           {dest.jewishSummary ? <p className="mt-1 text-sm text-stone">{dest.jewishSummary}</p> : null}
           {communities.length === 0 ? (
             <Card className="mt-3">
-              <p className="text-sm leading-relaxed text-stone">
+              <CardHeading icon="building" title={`No published house in ${dest.name}`} titleClass="font-display text-xl leading-tight text-ink" />
+              <p className="mt-2 text-sm leading-relaxed text-stone">
                 No published Chabad or synagogue for {dest.name}. Treat this as a weekday city if you need
                 minyan or kosher meals.
               </p>
@@ -246,7 +248,7 @@ export function DestinationView({
             <div className="mt-3 space-y-3">
               {communities.map((item) => (
                 <Card key={item.id}>
-                  <h3 className="font-display text-xl">{item.name}</h3>
+                  <CardHeading icon="building" title={item.name} titleAs="h3" titleClass="font-display text-xl leading-tight text-ink" />
                   <p className="mt-2 text-sm text-stone">{item.address}</p>
                   {item.addressVi ? <p className="text-xs font-medium text-stone">{item.addressVi}</p> : null}
                   {item.addressNote ? <p className="mt-1 text-sm font-medium text-stone">{item.addressNote}</p> : null}
@@ -284,7 +286,8 @@ export function DestinationView({
           <h2 className="font-display text-2xl">Kosher food</h2>
           {venues.length === 0 ? (
             <Card className="mt-3">
-              <p className="text-sm leading-relaxed text-stone">
+              <CardHeading icon="bowl" title="No verified kitchen" titleClass="font-display text-xl leading-tight text-ink" />
+              <p className="mt-2 text-sm leading-relaxed text-stone">
                 No verified kosher kitchen here. Pack food. Vegetarian restaurants are not kosher.
               </p>
             </Card>
@@ -292,10 +295,15 @@ export function DestinationView({
             <div className="mt-3 space-y-3">
               {venues.map((item) => (
                 <Card key={item.id}>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-lacquer">
-                    {item.kashrutClass.replace("-", " ")}
-                  </p>
-                  <h3 className="mt-1 font-display text-xl">{item.name}</h3>
+                  <CardHeading
+                    icon="bowl"
+                    kicker={item.kashrutClass.replace("-", " ")}
+                    title={item.name}
+                    titleAs="h3"
+                    titleClass="font-display text-xl leading-tight text-ink"
+                    kickerClass="text-lacquer"
+                    tone="lacquer"
+                  />
                   <p className="mt-2 text-sm text-stone">{item.address}</p>
                   {item.hours ? <p className="mt-2 text-sm text-stone">{item.hours}</p> : null}
                   {item.fridayHours ? <p className="text-sm text-stone">Friday: {item.fridayHours}</p> : null}
@@ -317,9 +325,13 @@ export function DestinationView({
         <section id="shabbat">
           <h2 className="font-display text-2xl">Shabbat guide</h2>
           <Card className="mt-3">
-            <p className="text-sm font-semibold text-jade">
-              {dest.shabbatBase.recommended ? "Recommended Shabbat base" : "Not a Shabbat base"}
-            </p>
+            <CardHeading
+              icon="flame"
+              title={dest.shabbatBase.recommended ? "Recommended Shabbat base" : "Not a Shabbat base"}
+              titleClass="text-sm font-semibold text-jade"
+              titleAs="p"
+              tone="lantern"
+            />
             <p className="mt-2 text-sm leading-relaxed text-stone">{dest.shabbatBase.neighborhood}</p>
             <p className="mt-2 text-sm leading-relaxed text-stone">{dest.shabbatBase.walkingNotes}</p>
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
@@ -346,7 +358,10 @@ export function DestinationView({
         <section id="map">
           <h2 className="font-display text-2xl">Map</h2>
           <Card className="mt-3">
-            <ShabbatMap pins={pinsForCity(dest.slug)} center={dest.coords} />
+            <CardHeading icon="map" title="Walking map" titleClass="font-display text-xl leading-tight text-ink" />
+            <div className="mt-3">
+              <ShabbatMap pins={pinsForCity(dest.slug)} center={dest.coords} />
+            </div>
             <Link href={`/map?city=${dest.slug}`} className="mt-3 inline-flex text-sm font-semibold text-jade">
               Open full map and Near me →
             </Link>
@@ -358,7 +373,8 @@ export function DestinationView({
           <div className="mt-3 space-y-3">
             {stays.length === 0 ? (
               <Card>
-                <p className="text-sm leading-relaxed text-stone">
+                <CardHeading icon="bed" title="Self-contained stay" titleClass="font-display text-xl leading-tight text-ink" />
+                <p className="mt-2 text-sm leading-relaxed text-stone">
                   No walking-radius Jewish neighborhood is published. If you stay here over Shabbat, you are
                   self-contained: food packed, no assumed minyan.
                 </p>
@@ -366,7 +382,7 @@ export function DestinationView({
             ) : (
               stays.map((item) => (
                 <Card key={item.id}>
-                  <h3 className="font-display text-xl">{item.name}</h3>
+                  <CardHeading icon="bed" title={item.name} titleAs="h3" titleClass="font-display text-xl leading-tight text-ink" />
                   <p className="mt-2 text-sm text-stone">{item.walkToCommunity}</p>
                   <p className="mt-2 text-sm text-stone">{item.familyFit}</p>
                   <p className="mt-2 text-sm text-stone">{item.kitchenNotes}</p>
@@ -389,9 +405,12 @@ export function DestinationView({
               {outbound.map((route) => (
                 <Link key={route.id} href={`/vietnam/go/${route.fromSlug}/${route.toSlug}`} className="block">
                   <Card>
-                    <p className="text-sm font-semibold text-ink">
-                      {titleCase(route.fromSlug)} → {titleCase(route.toSlug)}
-                    </p>
+                    <CardHeading
+                      icon="route"
+                      title={`${titleCase(route.fromSlug)} → ${titleCase(route.toSlug)}`}
+                      titleAs="p"
+                      titleClass="text-sm font-semibold text-ink"
+                    />
                     <p className="mt-1 text-xs font-medium text-stone">
                       {route.options[0]?.name} · {route.recommendation.friday}
                     </p>
@@ -405,7 +424,8 @@ export function DestinationView({
         <section id="friday">
           <h2 className="font-display text-2xl">Friday planning</h2>
           <Card className="mt-3">
-            <p className="text-sm leading-relaxed text-stone">{dest.shabbatBase.fridayAdvice}</p>
+            <CardHeading icon="flame" title="Friday planning" titleClass="font-display text-xl leading-tight text-ink" tone="lantern" />
+            <p className="mt-2 text-sm leading-relaxed text-stone">{dest.shabbatBase.fridayAdvice}</p>
             <p className="mt-2 text-sm leading-relaxed text-stone">{dest.gettingThere}</p>
             <p className="mt-2 text-sm leading-relaxed text-stone">{dest.gettingAround}</p>
             <Link href="/plan#friday" className="mt-3 inline-flex text-sm font-semibold text-jade">
@@ -417,7 +437,8 @@ export function DestinationView({
         <section id="family">
           <h2 className="font-display text-2xl">With kids</h2>
           <Card className="mt-3">
-            <p className="text-sm leading-relaxed text-stone">{dest.familyNotes}</p>
+            <CardHeading icon="family" title="With kids" titleClass="font-display text-xl leading-tight text-ink" />
+            <p className="mt-2 text-sm leading-relaxed text-stone">{dest.familyNotes}</p>
             {dest.familyByAge
               ? ageOrder.map((band) =>
                   dest.familyByAge?.[band] ? (

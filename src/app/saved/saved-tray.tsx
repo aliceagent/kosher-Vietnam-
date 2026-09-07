@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { Card } from "@/components/ui/bits";
+import { CardHeading, iconForSavedKind } from "@/components/ui/icons";
 import { markBundle, reorderSaved, setLastSync } from "@/lib/storage";
 import { notifyStorage, useBundles, useLastSync, useSaved } from "@/lib/use-local";
 
@@ -51,7 +52,7 @@ export function SavedTray() {
   return (
     <div className="mt-5 space-y-3 px-4">
       <Card>
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">Offline packages</p>
+        <CardHeading icon="download" kicker="Offline packages" title="Save a city pack" titleClass="font-display text-xl leading-tight text-ink" />
         <p className="mt-2 text-sm text-stone">
           {lastSync ? `Last synced ${new Date(lastSync).toLocaleString("en-GB")}` : "No bundle saved yet."}
         </p>
@@ -80,7 +81,8 @@ export function SavedTray() {
 
       {items.length === 0 ? (
         <Card>
-          <p className="text-sm text-stone">Nothing saved yet. Use “Save offline” on a listing.</p>
+          <CardHeading icon="star" title="Nothing saved yet" titleClass="font-display text-xl leading-tight text-ink" />
+          <p className="mt-2 text-sm text-stone">Nothing saved yet. Use “Save offline” on a listing.</p>
         </Card>
       ) : (
         grouped.map(([slug, rows]) => (
@@ -89,10 +91,17 @@ export function SavedTray() {
             <div className="space-y-3">
               {rows.map((item) => (
                 <Card key={item.id}>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{item.kind}</p>
-                  <Link href={item.href} className="font-display text-2xl text-ink">
-                    {item.title}
-                  </Link>
+                  <CardHeading
+                    icon={iconForSavedKind(item.kind)}
+                    kicker={item.kind}
+                    title={
+                      <Link href={item.href} className="font-display text-2xl text-ink">
+                        {item.title}
+                      </Link>
+                    }
+                    titleAs="div"
+                    titleClass=""
+                  />
                   <p className="mt-1 text-sm text-stone">{item.blurb}</p>
                   <div className="mt-2 flex gap-2">
                     <button

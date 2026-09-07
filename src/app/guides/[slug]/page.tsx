@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Card, PageIntro } from "@/components/ui/bits";
+import { CardHeading, iconForHeading } from "@/components/ui/icons";
 import { getGuide, getGuides } from "@/lib/content";
 
 export function generateStaticParams() {
@@ -27,7 +28,11 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
       <div className="mt-5 space-y-3 px-4">
         {guide.sections.map((section) => (
           <Card key={section.heading}>
-            <h2 className="font-display text-xl">{section.heading}</h2>
+            <CardHeading
+              icon={iconForHeading(section.heading)}
+              title={section.heading}
+              titleClass="font-display text-xl leading-tight text-ink"
+            />
             <p className="mt-2 text-sm leading-relaxed text-stone">{section.body}</p>
           </Card>
         ))}

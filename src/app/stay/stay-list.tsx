@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/bits";
+import { CardHeading } from "@/components/ui/icons";
 import { getDestination } from "@/lib/content";
 import type { StayArea } from "@/lib/schema";
 
@@ -43,10 +44,11 @@ export function StayList({ areas }: { areas: StayArea[] }) {
       <div className="mt-4 space-y-3 px-4">
         {rows.map((item) => (
           <Card key={item.id}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
-              {getDestination(item.destinationSlug)?.name}
-            </p>
-            <h2 className="mt-1 font-display text-2xl">{item.name}</h2>
+            <CardHeading
+              icon="bed"
+              kicker={getDestination(item.destinationSlug)?.name}
+              title={item.name}
+            />
             <p className="mt-2 text-sm text-stone">{item.walkToCommunity}</p>
             <Link href={`/vietnam/${item.destinationSlug}#stay`} className="mt-3 inline-flex text-sm font-semibold text-jade">
               Full stay notes →

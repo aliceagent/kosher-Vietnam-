@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { CardHeading, iconForSearchKind, type IconName } from "@/components/ui/icons";
 
 const LIMIT = 108;
 
@@ -12,6 +13,7 @@ export function SearchCard({
   href,
   external,
   blurb,
+  icon,
 }: {
   kicker: string;
   kickerClass?: string;
@@ -19,10 +21,12 @@ export function SearchCard({
   href?: string;
   external?: boolean;
   blurb: string;
+  icon?: IconName;
 }) {
   const [open, setOpen] = useState(false);
   const long = blurb.trim().length > LIMIT;
-  const headingClass = "mt-1 block font-display text-[1.35rem] leading-tight text-ink";
+  const headingClass = "block font-display text-[1.35rem] leading-tight text-ink";
+  const mark = icon ?? iconForSearchKind(kicker);
 
   const heading = href ? (
     external ? (
@@ -44,8 +48,15 @@ export function SearchCard({
         open ? "ring-1 ring-jade/15 shadow-[0_10px_28px_rgba(7,26,20,0.08)]" : ""
       }`}
     >
-      <p className={`text-[11px] font-bold uppercase tracking-[0.16em] ${kickerClass}`}>{kicker}</p>
-      {heading}
+      <CardHeading
+        icon={mark}
+        kicker={kicker}
+        title={heading}
+        titleAs="div"
+        kickerClass={kickerClass}
+        titleClass=""
+        tone={kicker.toLowerCase() === "kimi" ? "lantern" : "jade"}
+      />
       <p
         className={`mt-2 text-sm leading-relaxed text-stone ${
           open || !long ? "" : "line-clamp-2"
