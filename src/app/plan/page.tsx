@@ -19,6 +19,11 @@ export default function PlanPage() {
         Tell us the dates. We find every Friday and park you in a city that can actually host kosher meals
         and a minyan.
       </PageIntro>
+      <div className="mt-4 px-4">
+        <a href="#friday" className="inline-flex min-h-10 items-center text-sm font-semibold text-jade">
+          Jump to Friday arrival math →
+        </a>
+      </div>
       <div className="mt-5 space-y-8 px-4">
         <section>
           <h2 className="mb-3 font-display text-2xl">Trip builder</h2>
