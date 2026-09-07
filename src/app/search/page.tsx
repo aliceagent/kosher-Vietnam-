@@ -8,7 +8,9 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
   const q = typeof params.q === "string" ? params.q : "";
   return (
     <main className="pb-8">
-      <PageIntro kicker="Search" title="Ask it the way you would ask a friend." />
+      <PageIntro kicker="Search" title="Ask it the way you would ask a friend.">
+        Orah first. Kimi searches the web. Cards stay short — tap Read more.
+      </PageIntro>
       <SearchResults initial={q} />
     </main>
   );

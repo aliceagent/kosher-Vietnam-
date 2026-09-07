@@ -43,7 +43,7 @@ export function HomeHub() {
             <input
               id="q"
               name="q"
-              placeholder="Where are you going?"
+              placeholder="kosher Hanoi, rainy Hội An, Hanoi to Sapa…"
               className="min-h-12 w-full rounded-2xl bg-white px-4 text-base font-medium text-ink outline-none placeholder:text-stone"
             />
           </form>
