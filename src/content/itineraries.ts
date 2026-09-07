@@ -1,0 +1,76 @@
+import type { Itinerary } from "@/lib/schema";
+
+export const itineraries: Itinerary[] = [
+  {
+    slug: "7-day-shomer-family",
+    title: "7 days · Family, Shomer Shabbat",
+    days: 7,
+    styles: ["Family", "Shomer Shabbat", "First-time visitor"],
+    summary: "Hanoi weekdays, one nature day, Shabbat in Hanoi, then fly south only after Saturday night.",
+    shomerShabbat: true,
+    daysPlan: [
+      { label: "Sun", title: "Land Hanoi", body: "Hotel near the confirmed Chabad area. Order weekday meals." },
+      { label: "Mon", title: "Old Quarter + lake", body: "Walk Hoàn Kiếm. Museum or water-puppet only if it fits the children." },
+      { label: "Tue", title: "Ninh Bình day trip", body: "Boats and back to Hanoi for dinner. Packed kosher lunch." },
+      { label: "Wed", title: "City pace", body: "Train street photos from a safe distance, rest, laundry." },
+      { label: "Thu", title: "Optional Hạ Long day", body: "Day boat only. Overnight cruise would wreck Friday." },
+      {
+        label: "Fri",
+        title: "Shabbat prep",
+        body: "No intercity travel. Pick up meals, walk the route to Chabad, check in, lights, candles.",
+        shabbat: true,
+      },
+      {
+        label: "Sat",
+        title: "Shabbat Hanoi",
+        body: "Services and meals. Lake walk only if you are staying in walking range.",
+        shabbat: true,
+      },
+    ],
+  },
+  {
+    slug: "10-day-north-central",
+    title: "10 days · North then Hội An Shabbat",
+    days: 10,
+    styles: ["Couple", "Shomer Shabbat", "Kosher traveler"],
+    summary: "Hanoi and a nature weekday, fly to Da Nang Thursday, Shabbat in Hội An.",
+    shomerShabbat: true,
+    daysPlan: [
+      { label: "Sun–Tue", title: "Hanoi base", body: "City + Ninh Bình. Eat through Chabad." },
+      { label: "Wed", title: "Hạ Long weekday", body: "Day trip or one night — be in Hanoi Wednesday night if the next day is a flight." },
+      { label: "Thu", title: "Fly to DAD", body: "Transfer to Hội An. Confirm Chabad meals." },
+      { label: "Fri", title: "Hội An prep", body: "Tailor pickup before 2pm. Walk to 570A Cửa Đại. Candles.", shabbat: true },
+      { label: "Sat", title: "Shabbat Hội An", body: "Services, meals, Old Town streets. No boats or ticketed houses.", shabbat: true },
+      { label: "Sun", title: "Beach or Huế", body: "Resume travel after nightfall Saturday if you want a late move; otherwise Sunday." },
+    ],
+  },
+  {
+    slug: "14-day-full-arc",
+    title: "14 days · Full arc, two Shabbats",
+    days: 14,
+    styles: ["Family", "Shomer Shabbat", "Slow travel"],
+    summary: "Shabbat 1 in Hanoi. Midweek central Vietnam. Shabbat 2 in Hội An or Saigon — never Hà Giang on Friday.",
+    shomerShabbat: true,
+    daysPlan: [
+      { label: "Week 1", title: "North", body: "Hanoi Shabbat. Optional Sapa only if Chabad confirms meals that week." },
+      { label: "Mon–Thu", title: "Move south", body: "Da Nang / Huế weekdays. Sleep in Hội An Thursday night." },
+      { label: "Shabbat 2", title: "Hội An or fly SGN Thursday", body: "If you want the Mekong and Phú Quốc, spend the second Shabbat in Saigon instead.", shabbat: true },
+      { label: "Final weekdays", title: "South", body: "Mekong day trip and/or Phú Quốc after Shabbat, back to SGN for departure." },
+    ],
+  },
+  {
+    slug: "5-day-saigon-plus",
+    title: "5 days · Saigon first-timers",
+    days: 5,
+    styles: ["Couple", "First-time visitor", "Kosher traveler"],
+    summary: "Land SGN, District 1 hotel, Shabbat at Chabad, one Mekong weekday.",
+    shomerShabbat: true,
+    daysPlan: [
+      { label: "Thu", title: "Land SGN", body: "District 1 hotel. Walk the Chabad alley while it is light." },
+      { label: "Fri", title: "Prep", body: "Meals, candles, no day trip.", shabbat: true },
+      { label: "Sat", title: "Shabbat", body: "Chabad and a District 1 walk.", shabbat: true },
+      { label: "Sun", title: "City", body: "Museum or park. Packed food." },
+      { label: "Mon", title: "Mekong weekday", body: "Driver back before dark. Fly out Tuesday." },
+    ],
+  },
+];

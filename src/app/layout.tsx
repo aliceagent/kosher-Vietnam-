@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Karla } from "next/font/google";
+import { AppShell } from "@/components/shell/app-shell";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -15,20 +16,24 @@ const sans = Karla({
 });
 
 export const metadata: Metadata = {
-  title: "Orah — Kosher Vietnam Travel",
+  title: {
+    default: "Orah — Kosher & Shomer Shabbat Vietnam",
+    template: "%s · Orah",
+  },
   description:
-    "Private kosher journeys through Vietnam — Shabbat-ready itineraries, trusted meals, and guides who understand Jewish travel.",
+    "Vietnam travel guide for English-speaking Jewish travelers: kosher food, Chabad, Shabbat times, and itineraries that plan around Friday.",
   openGraph: {
-    title: "Orah — Kosher Vietnam Travel",
-    description:
-      "Vietnam, planned for Jewish life. Kosher meals, Shabbat timing, and heritage-minded routes from Hanoi to the Mekong.",
+    title: "Orah — Kosher & Shomer Shabbat Vietnam",
+    description: "Plan Vietnam around Shabbat. Kosher kitchens, walking neighborhoods, Friday arrival math.",
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} h-full`}>
-      <body className="min-h-full antialiased">{children}</body>
+      <body className="min-h-full antialiased">
+        <AppShell>{children}</AppShell>
+      </body>
     </html>
   );
 }

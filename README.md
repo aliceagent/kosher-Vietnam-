@@ -1,8 +1,8 @@
 # Orah — Kosher Vietnam
 
-A travel site for Jewish travelers exploring Vietnam with kosher meals, Shabbat-ready itineraries, and private guides.
+Mobile-first guide for English-speaking Jewish travelers in Vietnam. Signature feature: **Plan around Shabbat**.
 
-## Develop
+See [SPRINTS.md](SPRINTS.md) for the build loop.
 
 ```bash
 npm install
@@ -10,7 +10,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
-
-## Stack
-
-Next.js, TypeScript, Tailwind CSS.

@@ -1,0 +1,70 @@
+import type { StayArea } from "@/lib/schema";
+
+export const stayAreas: StayArea[] = [
+  {
+    id: "hanoi-tay-ho",
+    destinationSlug: "hanoi",
+    name: "Tây Hồ / Tô Ngọc Vân",
+    walkToCommunity: "Aim for a hotel you can walk to the confirmed Chabad pin.",
+    familyFit: "Quieter than the Old Quarter; better for sleep with children.",
+    kitchenNotes: "Serviced apartments are easier for leftovers and baby food.",
+    shabbatQuestions: [
+      "Can we have a physical key or keep one keycard out of the slot?",
+      "Can lights stay on without the keycard tray?",
+      "Is there stair access if we will not use the elevator?",
+      "Can we check in Friday afternoon and store luggage Saturday night?",
+    ],
+    notes: "We do not rate hotels as Shabbat-friendly until someone has verified the electronics on site.",
+  },
+  {
+    id: "hanoi-old-quarter",
+    destinationSlug: "hanoi",
+    name: "Hoàn Kiếm / Old Quarter",
+    walkToCommunity: "Often too far to walk to Tây Hồ Chabad. Use a car before Shabbat.",
+    familyFit: "Atmospheric but noisy and tight for strollers.",
+    kitchenNotes: "Boutique hotels rarely have kitchens.",
+    shabbatQuestions: [
+      "How long is the Friday drive to Chabad in traffic?",
+      "Can meals be delivered to the room before candle lighting?",
+    ],
+    notes: "Fine for weekdays. A weaker default for Shomer Shabbat unless you have confirmed the walk.",
+  },
+  {
+    id: "hcmc-d1",
+    destinationSlug: "ho-chi-minh-city",
+    name: "District 1 / Đa Kao",
+    walkToCommunity: "Best chance of a walking-radius hotel to Chabad. Measure the alley route yourself.",
+    familyFit: "Central, loud, convenient. Look for family rooms or an apartment with a fridge.",
+    kitchenNotes: "A fridge matters more than a breakfast buffet you will not use.",
+    shabbatQuestions: [
+      "Automatic lobby doors and motion-sensor lights?",
+      "Physical keys or a workaround for electronic locks?",
+      "Late checkout after Shabbat / luggage room?",
+    ],
+    notes: "Ask every question in writing. Do not treat a star rating as a Shabbat rating.",
+  },
+  {
+    id: "hoian-cua-dai",
+    destinationSlug: "hoi-an",
+    name: "Cửa Đại / Cẩm Châu",
+    walkToCommunity: "Closest published area to Chabad on Cửa Đại.",
+    familyFit: "Larger hotels and some apartments. Good if you want a shorter Friday walk.",
+    kitchenNotes: "Ask for a fridge. Kettle use on Shabbat is a question for your rav, not this site.",
+    shabbatQuestions: [
+      "Walking minutes to 570A Cửa Đại?",
+      "Keycard lights?",
+      "Can Shabbat meals be stored if you pick up before candle lighting?",
+    ],
+    notes: "Old Town is prettier at night but may be a longer walk. Test both options.",
+  },
+  {
+    id: "sapa-center",
+    destinationSlug: "sapa",
+    name: "Sapa town center",
+    walkToCommunity: "Stay near Thác Bạc only after you confirm Chabad is open.",
+    familyFit: "Steep. Choose a hotel with a lift and ask about stairs for Shabbat.",
+    kitchenNotes: "Cold weather makes a kettle and packaged food more important.",
+    shabbatQuestions: ["Is Chabad open this week?", "How steep is the walk after dark?"],
+    notes: "If you cannot confirm Chabad, treat Sapa as a weekday town and Shabbat in Hanoi.",
+  },
+];
