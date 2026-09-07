@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DestinationView } from "@/components/destination/destination-view";
-import { DestinationJsonLd } from "@/components/seo/json-ld";
 import {
   getAttractions,
   getCommunities,
+  getCountries,
   getDestination,
   getDestinations,
   getNearby,
@@ -13,30 +13,28 @@ import {
 } from "@/lib/content";
 
 export function generateStaticParams() {
-  return getDestinations().map((item) => ({ slug: item.slug }));
+  return getCountries()
+    .filter((item) => item.slug !== "vietnam")
+    .flatMap((country) =>
+      getDestinations(country.slug).map((dest) => ({ country: country.slug, slug: dest.slug })),
+    );
 }
 
 export async function generateMetadata({
   params,
-}: PageProps<"/vietnam/[slug]">): Promise<Metadata> {
+}: PageProps<"/[country]/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const dest = getDestination(slug);
-  if (!dest) return {};
-  return {
-    title: `${dest.name} kosher & Shabbat guide`,
-    description: dest.summary,
-  };
+  return { title: dest ? `${dest.name} preview` : "City" };
 }
 
-export default async function DestinationPage({ params }: PageProps<"/vietnam/[slug]">) {
-  const { slug } = await params;
+export default async function PreviewCityPage({ params }: PageProps<"/[country]/[slug]">) {
+  const { country, slug } = await params;
   const dest = getDestination(slug);
-  if (!dest) notFound();
+  if (!dest || dest.countrySlug !== country || country === "vietnam") notFound();
 
   return (
-    <>
-      <DestinationJsonLd dest={dest} />
-      <DestinationView
+    <DestinationView
       dest={dest}
       communities={getCommunities(dest.slug)}
       venues={getVenues(dest.slug)}
@@ -44,6 +42,5 @@ export default async function DestinationPage({ params }: PageProps<"/vietnam/[s
       attractions={getAttractions(dest.slug)}
       nearby={getNearby(dest.slug) as typeof dest[]}
     />
-    </>
   );
 }

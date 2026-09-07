@@ -3,41 +3,45 @@
 Mobile-first guide for English-speaking Jewish travelers in Vietnam.
 Signature feature: **Plan around Shabbat**.
 
-Stack for this loop: Next.js App Router, TypeScript content files, Zod-ready types, `@hebcal/core` for times. Schema is country-agnostic so `/thailand/bangkok` can be added later without a redesign.
-
-## Sprint 1 — Mobile shell + hub
+## Sprint 1 — Mobile shell + hub — done
 
 - App chrome: sticky top bar, bottom nav, safe-area padding
-- Homepage as a traveler hub (search, quick actions, next Shabbat, destinations)
-- Country index `/vietnam`
-- Routing `/vietnam/[slug]`
+- Homepage traveler hub
+- `/vietnam` and `/vietnam/[slug]`
 
-## Sprint 2 — Destination system
+## Sprint 2 — Destination system — done
 
-- Repeatable destination template (overview through nearby)
-- Chabad / community records with verification badges
-- Kosher venues with kashrut class (certified / community / products / not kosher)
-- Shabbat base, eruv (never assumed), hotel neighborhoods
-- Attractions with family + walking notes
+- Repeatable destination template
+- Chabad / kosher / Shabbat / stay / attractions
 
-## Sprint 3 — Plan around Shabbat
+## Sprint 3 — Plan around Shabbat — done
 
-- Candle lighting / tzeit / havdalah / parsha by city
-- Friday arrival estimator (not a pesak)
-- Trip builder that finds every Friday, Shabbat, and Yom Tov
-- Warnings when a plan parks someone without Jewish infrastructure on Friday
+- Candle lighting, Friday estimator, trip builder, Yom Tov warnings
 
-## Sprint 4 — Practical guides + findability
+## Sprint 4 — Guides + findability — done
 
-- Visa, money, SIM, transport, language, health, safety
-- Family, holidays, packing, emergency
-- Search, itineraries, update submissions
-- Mobile QA on the critical paths
+- Basics guides, search, itineraries, emergency, submissions
 
-## Later (not this loop)
+## Sprint 5 — Admin / CMS — done
 
-- Payload/Sanity CMS + Postgres
-- Moderated community accounts
-- Mapbox/Leaflet Shabbat map mode
-- Offline PWA + saved itinerary sync
-- Worldwide country expansion
+- `/admin` content console
+- `/admin/records` last-checked browser
+- `/admin/queue` moderation for traveler updates
+- Typed records ready for Payload/Postgres later
+
+## Sprint 6 — Shabbat walking map — done
+
+- Leaflet map, Shabbat mode, walking minutes from Chabad
+- `/map` and per-destination map section
+
+## Sprint 7 — Offline PWA + saved tray — done
+
+- Manifest + service worker
+- Save offline on destinations and Chabad
+- `/saved`
+
+## Sprint 8 — Worldwide schema — done
+
+- `/countries`
+- `/thailand/bangkok`, `/japan/tokyo`, `/italy/rome` preview cities
+- Same destination engine as Vietnam

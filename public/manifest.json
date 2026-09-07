@@ -1,0 +1,16 @@
+{
+  "name": "Orah — Kosher Vietnam",
+  "short_name": "Orah",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f7f4",
+  "theme_color": "#0f3d32",
+  "description": "Plan Vietnam around Shabbat. Kosher food, Chabad, walking maps.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

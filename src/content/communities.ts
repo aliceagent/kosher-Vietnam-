@@ -18,6 +18,7 @@ export const communities: Community[] = [
       "Shabbat and holiday services are offered when the center is open. Times change — write or call before you arrive.",
     meals:
       "Kosher restaurant and Shabbat meals are published on Chabad and Kosher Saigon pages. Reserve Friday dinner and Shabbat lunch in advance.",
+    coords: { lat: 10.7892, lng: 106.6998 },
     verification: {
       status: "sourced",
       lastChecked: "2026-09-07",
@@ -40,6 +41,7 @@ export const communities: Community[] = [
     advanceContactRequired: true,
     services: "Tourist info pages describe prayer and Shabbat meals. Confirm this week’s schedule directly.",
     meals: "Chabad publishes kosher food, hotel delivery, and catering. Order before Friday.",
+    coords: { lat: 21.0568, lng: 105.8275 },
     verification: {
       status: "needs-confirm",
       lastChecked: "2026-09-07",
@@ -62,6 +64,7 @@ export const communities: Community[] = [
     advanceContactRequired: true,
     services: "Friday evening at sundown and Shabbat morning, followed by meals — confirm before arrival.",
     meals: "Shabbat meals by advance notice. Weekday restaurant hours are published on the Chabad Hoi An page.",
+    coords: { lat: 15.8875, lng: 108.3512 },
     verification: {
       status: "sourced",
       lastChecked: "2026-09-07",
@@ -80,6 +83,7 @@ export const communities: Community[] = [
     advanceContactRequired: true,
     services: "Travel listings mention Shabbat meals and a shul. No official weekly schedule was confirmed here.",
     meals: "Do not assume weekday or Shabbat meals without a direct confirmation.",
+    coords: { lat: 22.336, lng: 103.8445 },
     verification: {
       status: "unverified",
       lastChecked: "2026-09-07",

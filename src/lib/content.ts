@@ -1,21 +1,31 @@
 import { attractions } from "@/content/attractions";
 import { communities } from "@/content/communities";
+import { countries, previewDestinations } from "@/content/countries";
 import { country, destinations } from "@/content/destinations";
 import { guides } from "@/content/guides";
 import { itineraries } from "@/content/itineraries";
 import { stayAreas } from "@/content/stays";
 import { venues } from "@/content/venues";
 
-export function getCountry() {
-  return country;
+export function getCountries() {
+  return countries;
 }
 
-export function getDestinations() {
-  return destinations;
+export function getCountry(slug = "vietnam") {
+  return countries.find((item) => item.slug === slug) ?? { ...country, status: "live" as const, image: "/destinations/halong.jpg" };
+}
+
+export function allDestinations() {
+  return [...destinations, ...previewDestinations];
+}
+
+export function getDestinations(countrySlug?: string) {
+  const list = allDestinations();
+  return countrySlug ? list.filter((item) => item.countrySlug === countrySlug) : destinations;
 }
 
 export function getDestination(slug: string) {
-  return destinations.find((item) => item.slug === slug);
+  return allDestinations().find((item) => item.slug === slug);
 }
 
 export function getCommunities(slug?: string) {
@@ -58,4 +68,17 @@ export function getNearby(slug: string) {
 
 export function shabbatCities() {
   return destinations.filter((item) => country.shabbatCities.includes(item.slug));
+}
+
+export function catalog() {
+  return {
+    countries,
+    destinations: allDestinations(),
+    communities,
+    venues,
+    stayAreas,
+    attractions,
+    guides,
+    itineraries,
+  };
 }

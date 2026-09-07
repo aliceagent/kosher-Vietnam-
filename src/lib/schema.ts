@@ -75,7 +75,36 @@ export type Community = {
   advanceContactRequired: boolean;
   services: string;
   meals: string;
+  coords?: GeoPoint;
   verification: Verification;
+};
+
+export type CountryRecord = {
+  slug: string;
+  name: string;
+  localName?: string;
+  status: "live" | "preview";
+  summary: string;
+  image: string;
+  shabbatCities: string[];
+};
+
+export type SavedItem = {
+  id: string;
+  href: string;
+  title: string;
+  kind: string;
+  blurb: string;
+};
+
+export type Submission = {
+  id: string;
+  kind: string;
+  place: string;
+  details: string;
+  email: string;
+  createdAt: string;
+  status: "pending" | "approved" | "rejected";
 };
 
 export type Venue = {

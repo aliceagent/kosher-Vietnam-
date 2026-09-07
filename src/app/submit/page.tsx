@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Field, inputClass, PageIntro } from "@/components/ui/bits";
+import { addSubmission } from "@/lib/storage";
 
 export default function SubmitPage() {
   const [done, setDone] = useState(false);
@@ -9,13 +10,21 @@ export default function SubmitPage() {
   return (
     <main className="pb-8">
       <PageIntro kicker="Community" title="Send a correction.">
-        Restaurant closed, new address, hotel now has physical keys — we will not publish until someone
-        reviews it.
+        Restaurant closed, new address, hotel now has physical keys — nothing publishes until an editor
+        reviews it in Admin.
       </PageIntro>
       <form
         className="mt-5 space-y-3 px-4"
         onSubmit={(e) => {
           e.preventDefault();
+          const data = new FormData(e.currentTarget);
+          addSubmission({
+            kind: String(data.get("kind")),
+            place: String(data.get("place")),
+            details: String(data.get("details")),
+            email: String(data.get("email")),
+          });
+          e.currentTarget.reset();
           setDone(true);
         }}
       >
@@ -42,7 +51,8 @@ export default function SubmitPage() {
         </button>
         {done ? (
           <p className="text-sm text-jade">
-            Saved locally for this demo. A live CMS would hold this for moderation.
+            In the queue. An editor can approve it at /admin/queue. This phone keeps the draft until a
+            database is attached.
           </p>
         ) : null}
       </form>

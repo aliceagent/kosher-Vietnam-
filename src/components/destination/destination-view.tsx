@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { ShabbatMap } from "@/components/map/shabbat-map";
+import { SaveButton } from "@/components/save/save-button";
 import { Actions, Card, Disclaimer, Kicker, Trust } from "@/components/ui/bits";
+import { pinsForCity } from "@/lib/map-pins";
 import type { Attraction, Community, Destination, StayArea, Venue } from "@/lib/schema";
 import { getUpcomingShabbat } from "@/lib/shabbat";
 
@@ -8,6 +11,7 @@ const sections = [
   ["community", "Chabad"],
   ["kosher", "Kosher"],
   ["shabbat", "Shabbat"],
+  ["map", "Map"],
   ["stay", "Stay"],
   ["attractions", "See"],
   ["friday", "Friday"],
@@ -42,6 +46,17 @@ export function DestinationView({
             {dest.region} · {dest.localName}
           </p>
           <h1 className="font-display text-4xl leading-none">{dest.name}</h1>
+          <div className="mt-3">
+            <SaveButton
+              item={{
+                id: dest.slug,
+                href: `/${dest.countrySlug}/${dest.slug}`,
+                title: dest.name,
+                kind: "Destination",
+                blurb: dest.summary,
+              }}
+            />
+          </div>
         </div>
       </div>
 
@@ -108,6 +123,17 @@ export function DestinationView({
                     mapsQuery={item.mapsQuery}
                   />
                   <Trust item={item.verification} />
+                  <div className="mt-3">
+                    <SaveButton
+                      item={{
+                        id: item.id,
+                        href: `/${dest.countrySlug}/${dest.slug}#community`,
+                        title: item.name,
+                        kind: "Chabad",
+                        blurb: item.address,
+                      }}
+                    />
+                  </div>
                 </Card>
               ))}
             </div>
@@ -175,6 +201,16 @@ export function DestinationView({
             <Trust item={dest.eruv.verification} />
             <Link href="/shabbat" className="mt-3 inline-flex text-sm font-semibold text-jade">
               Calculation preferences →
+            </Link>
+          </Card>
+        </section>
+
+        <section id="map">
+          <h2 className="font-display text-2xl">Shabbat walking map</h2>
+          <Card className="mt-3">
+            <ShabbatMap pins={pinsForCity(dest.slug)} center={dest.coords} />
+            <Link href={`/map?city=${dest.slug}`} className="mt-3 inline-flex text-sm font-semibold text-jade">
+              Open full map →
             </Link>
           </Card>
         </section>
@@ -257,7 +293,7 @@ export function DestinationView({
               {nearby.map((item) => (
                 <Link
                   key={item.slug}
-                  href={`/vietnam/${item.slug}`}
+                  href={`/${item.countrySlug}/${item.slug}`}
                   className="rounded-full bg-white px-3 py-2 text-sm font-semibold text-jade"
                 >
                   {item.name}

@@ -19,6 +19,9 @@ export function TopBar() {
           Orah
         </Link>
         <div className="flex items-center gap-3 text-xs font-semibold">
+          <Link href="/saved" className="min-h-10 inline-flex items-center">
+            Saved
+          </Link>
           <Link href="/search" className="min-h-10 min-w-10 inline-flex items-center justify-center">
             Search
           </Link>

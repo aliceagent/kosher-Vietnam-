@@ -135,6 +135,9 @@ export function HomeHub() {
           <ChipLink href="/emergency">Emergency</ChipLink>
           <ChipLink href="/submit">Update a listing</ChipLink>
           <ChipLink href="/guides">Phrases & basics</ChipLink>
+          <ChipLink href="/map">Shabbat map</ChipLink>
+          <ChipLink href="/countries">More countries</ChipLink>
+          <ChipLink href="/saved">Saved offline</ChipLink>
         </div>
         <div className="mt-6">
           <PrimaryLink href="/plan">Build a Shabbat-aware route</PrimaryLink>
