@@ -253,6 +253,7 @@ export type Attraction = {
   flags: AttractionFlag[];
   grabMin?: number;
   exclusiveWith?: string[];
+  image: string;
   verification: Verification;
 };
 

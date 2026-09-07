@@ -17,9 +17,10 @@ export const evergreen: Verification = {
   lastChecked: "2026-09-07",
 };
 
-type Draft = Omit<Attraction, "verification" | "flags"> & {
+type Draft = Omit<Attraction, "verification" | "flags" | "image"> & {
   flags?: AttractionFlag[];
   verification?: Verification;
+  image?: string;
 };
 
 export function attraction(row: Draft): Attraction {
@@ -27,5 +28,6 @@ export function attraction(row: Draft): Attraction {
     flags: [],
     verification: checked,
     ...row,
+    image: row.image ?? `/attractions/${row.id}.jpg`,
   };
 }
