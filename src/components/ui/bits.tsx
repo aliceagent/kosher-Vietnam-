@@ -2,9 +2,15 @@ import Link from "next/link";
 import { mapsUrl, telUrl, verificationLabel, waUrl } from "@/lib/format";
 import type { Verification } from "@/lib/schema";
 
-export function Kicker({ children }: { children: React.ReactNode }) {
+export function Kicker({
+  children,
+  className = "text-jade",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">{children}</p>
+    <p className={`text-[11px] font-bold uppercase tracking-[0.22em] ${className}`}>{children}</p>
   );
 }
 
@@ -20,8 +26,8 @@ export function PageIntro({
   return (
     <header className="px-4 pt-5">
       <Kicker>{kicker}</Kicker>
-      <h1 className="mt-2 font-display text-3xl font-medium leading-tight text-ink">{title}</h1>
-      {children ? <div className="mt-3 text-[15px] leading-relaxed text-stone">{children}</div> : null}
+      <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-ink">{title}</h1>
+      {children ? <div className="mt-3 text-[16px] font-medium leading-relaxed text-stone">{children}</div> : null}
     </header>
   );
 }
@@ -33,12 +39,16 @@ export function Card({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <article className={`rounded-2xl bg-white p-4 shadow-[0_1px_0_rgba(7,26,20,0.06)] ${className}`}>{children}</article>;
+  return (
+    <article className={`rounded-2xl bg-white p-4 text-ink shadow-[0_1px_0_rgba(7,26,20,0.08)] ${className}`}>
+      {children}
+    </article>
+  );
 }
 
 export function Trust({ item }: { item: Verification }) {
   return (
-    <p className="mt-3 text-xs leading-relaxed text-muted">
+    <p className="mt-3 text-xs font-medium leading-relaxed text-stone">
       {verificationLabel(item.status)}. Last checked {item.lastChecked}
       {item.source ? ` · ${item.source}` : ""}. {item.note ?? "Contact the venue before you rely on this."}
     </p>
@@ -47,7 +57,7 @@ export function Trust({ item }: { item: Verification }) {
 
 export function Disclaimer() {
   return (
-    <p className="text-xs leading-relaxed text-muted">
+    <p className="text-xs font-medium leading-relaxed text-stone">
       Orah is a travel-planning resource, not a rabbinic authority. Facts (addresses, electronics, hours) are
       listed separately from decisions your rav should make.
     </p>
@@ -95,7 +105,7 @@ export function ChipLink({ href, children }: { href: string; children: React.Rea
   return (
     <Link
       href={href}
-      className="inline-flex min-h-11 items-center rounded-full bg-white px-4 text-sm font-semibold text-jade shadow-[0_1px_0_rgba(7,26,20,0.06)]"
+      className="inline-flex min-h-11 items-center rounded-full border border-jade/15 bg-white px-4 text-sm font-semibold text-ink"
     >
       {children}
     </Link>
@@ -122,7 +132,7 @@ export function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+      <span className="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
         {label}
       </span>
       {children}

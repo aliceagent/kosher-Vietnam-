@@ -85,7 +85,7 @@ export function ShabbatMap({
           <li key={pin.id} className="flex items-start justify-between gap-3 text-sm">
             <span>
               <span className="font-semibold text-ink">{pin.title}</span>
-              <span className="block text-xs text-muted">{pin.kind}</span>
+              <span className="block text-xs font-medium text-stone">{pin.kind}</span>
             </span>
             <span className="shrink-0 text-xs font-semibold text-jade">
               {pin.walkMins ? formatWalk(pin.walkMins) : "Pin"}
@@ -93,7 +93,7 @@ export function ShabbatMap({
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-xs text-muted">
+      <p className="mt-3 text-xs font-medium text-stone">
         Walking minutes assume 4.5 km/h from the Chabad pin. Confirm the address before Shabbat. Pins are
         approximate.
       </p>

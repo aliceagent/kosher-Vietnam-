@@ -23,20 +23,20 @@ export default function ShabbatPage() {
               <h2 className="font-display text-2xl">{city.name}</h2>
               <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
                 <div>
-                  <p className="text-muted">Candles</p>
-                  <p className="text-xl font-semibold">{times.candles?.candlesLabel}</p>
+                  <p className="font-semibold text-stone">Candles</p>
+                  <p className="text-2xl font-bold text-ink">{times.candles?.candlesLabel}</p>
                 </div>
                 <div>
-                  <p className="text-muted">Sunset</p>
-                  <p className="text-xl font-semibold">{times.candles?.sunsetLabel}</p>
+                  <p className="font-semibold text-stone">Sunset</p>
+                  <p className="text-2xl font-bold text-ink">{times.candles?.sunsetLabel}</p>
                 </div>
                 <div>
-                  <p className="text-muted">Havdalah / tzeit</p>
-                  <p className="text-xl font-semibold">{times.havdalah?.havdalahLabel}</p>
+                  <p className="font-semibold text-stone">Havdalah / tzeit</p>
+                  <p className="text-2xl font-bold text-ink">{times.havdalah?.havdalahLabel}</p>
                 </div>
                 <div>
-                  <p className="text-muted">Hebrew date (Fri)</p>
-                  <p className="text-sm font-semibold">{times.hebrewDate}</p>
+                  <p className="font-semibold text-stone">Hebrew date (Fri)</p>
+                  <p className="text-sm font-bold text-ink">{times.hebrewDate}</p>
                 </div>
               </div>
             </Card>

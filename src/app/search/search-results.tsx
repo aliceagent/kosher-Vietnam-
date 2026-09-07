@@ -23,7 +23,7 @@ export function SearchResults({ initial }: { initial: string }) {
       <div className="mt-4 space-y-3">
         {hits.map((item) => (
           <Card key={item.href + item.title}>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">{item.kind}</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{item.kind}</p>
             <Link href={item.href} className="mt-1 block font-display text-2xl text-ink">
               {item.title}
             </Link>

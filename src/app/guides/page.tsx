@@ -15,7 +15,7 @@ export default function GuidesIndex() {
         {getGuides().map((item) => (
           <Link key={item.slug} href={`/guides/${item.slug}`}>
             <Card>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">{item.kicker}</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{item.kicker}</p>
               <h2 className="mt-1 font-display text-2xl">{item.title}</h2>
               <p className="mt-2 text-sm text-stone">{item.summary}</p>
             </Card>
@@ -23,7 +23,7 @@ export default function GuidesIndex() {
         ))}
         <Card>
           <h2 className="font-display text-2xl">Useful Vietnamese</h2>
-          <p className="mt-2 text-xs text-muted">
+          <p className="mt-2 text-xs font-medium text-stone">
             Food phrases cannot make a kitchen kosher. They only help you communicate a preference.
           </p>
           <ul className="mt-3 space-y-3">

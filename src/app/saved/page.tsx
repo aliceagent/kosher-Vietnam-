@@ -20,7 +20,7 @@ export default function SavedPage() {
         ) : (
           items.map((item) => (
             <Card key={item.id}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">{item.kind}</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">{item.kind}</p>
               <Link href={item.href} className="font-display text-2xl text-ink">
                 {item.title}
               </Link>

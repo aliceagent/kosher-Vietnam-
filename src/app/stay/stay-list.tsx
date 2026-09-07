@@ -43,7 +43,7 @@ export function StayList({ areas }: { areas: StayArea[] }) {
       <div className="mt-4 space-y-3 px-4">
         {rows.map((item) => (
           <Card key={item.id}>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
               {getDestination(item.destinationSlug)?.name}
             </p>
             <h2 className="mt-1 font-display text-2xl">{item.name}</h2>

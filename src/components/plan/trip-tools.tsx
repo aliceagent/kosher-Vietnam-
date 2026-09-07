@@ -123,7 +123,7 @@ export function TripPlanner({
       </label>
 
       <div>
-        <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
           Destinations
         </p>
         <div className="flex flex-wrap gap-2">
@@ -146,7 +146,7 @@ export function TripPlanner({
       </div>
 
       <Card>
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-jade">
           {plan.nights} nights · {plan.fridays.length} Shabbat{plan.fridays.length === 1 ? "" : "s"}
         </p>
         <div className="mt-3 space-y-3">
@@ -173,7 +173,7 @@ export function TripPlanner({
         </Card>
       ))}
 
-      <p className="text-xs text-muted">
+      <p className="text-xs font-medium text-stone">
         This is a logistics sketch, not a pesak. Confirm meals and the current Chabad address before you book.
       </p>
     </form>
@@ -245,7 +245,7 @@ export function FridayPlanner({
       ) : (
         <p className="text-sm text-stone">{result.message}</p>
       )}
-      <p className="text-xs text-muted">
+      <p className="text-xs font-medium text-stone">
         Not a halachic ruling. Times are estimates. Confirm candle lighting with your rav and local Chabad.
       </p>
     </div>

@@ -76,7 +76,7 @@ export function DestinationView({
 
       <div className="space-y-4 px-4 py-5">
         <section id="overview">
-          <p className="text-[15px] leading-relaxed text-stone">{dest.summary}</p>
+          <p className="text-[16px] font-medium leading-relaxed text-stone">{dest.summary}</p>
           <div className="mt-4 grid gap-3">
             <Card>
               <Kicker>Why visit</Kicker>
@@ -110,7 +110,7 @@ export function DestinationView({
                 <Card key={item.id}>
                   <h3 className="font-display text-xl">{item.name}</h3>
                   <p className="mt-2 text-sm text-stone">{item.address}</p>
-                  {item.addressNote ? <p className="mt-1 text-sm text-muted">{item.addressNote}</p> : null}
+                  {item.addressNote ? <p className="mt-1 text-sm font-medium text-stone">{item.addressNote}</p> : null}
                   <p className="mt-3 text-sm leading-relaxed text-stone">{item.services}</p>
                   <p className="mt-2 text-sm leading-relaxed text-stone">{item.meals}</p>
                   <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-lacquer">
@@ -160,7 +160,7 @@ export function DestinationView({
                   {item.hours ? <p className="mt-2 text-sm text-stone">{item.hours}</p> : null}
                   {item.fridayHours ? <p className="text-sm text-stone">Friday: {item.fridayHours}</p> : null}
                   <p className="mt-2 text-sm text-stone">{item.shabbatStatus}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{item.notes}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-stone">{item.notes}</p>
                   <Actions
                     phone={item.phone}
                     whatsapp={item.whatsapp}
@@ -184,15 +184,15 @@ export function DestinationView({
             <p className="mt-2 text-sm leading-relaxed text-stone">{dest.shabbatBase.walkingNotes}</p>
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
               <div>
-                <p className="text-muted">Candles (next Fri)</p>
-                <p className="text-lg font-semibold">{times.candles?.candlesLabel}</p>
+                <p className="font-semibold text-stone">Candles (next Fri)</p>
+                <p className="text-2xl font-bold text-ink">{times.candles?.candlesLabel}</p>
               </div>
               <div>
-                <p className="text-muted">Havdalah (tzeit)</p>
-                <p className="text-lg font-semibold">{times.havdalah?.havdalahLabel}</p>
+                <p className="font-semibold text-stone">Havdalah (tzeit)</p>
+                <p className="text-2xl font-bold text-ink">{times.havdalah?.havdalahLabel}</p>
               </div>
             </div>
-            <p className="mt-3 text-xs text-muted">
+            <p className="mt-3 text-xs font-medium text-stone">
               18 minutes before sunset. Confirm with your rav and the local community. {times.parsha}.
             </p>
             <p className="mt-3 text-sm text-stone">
@@ -237,7 +237,7 @@ export function DestinationView({
                       <li key={q}>{q}</li>
                     ))}
                   </ul>
-                  <p className="mt-3 text-xs text-muted">{item.notes}</p>
+                  <p className="mt-3 text-xs font-medium text-stone">{item.notes}</p>
                 </Card>
               ))
             )}
@@ -249,13 +249,13 @@ export function DestinationView({
           <div className="mt-3 space-y-3">
             {attractions.map((item) => (
               <Card key={item.id}>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
                   {item.category}
                   {item.religiousSite ? " · religious site" : ""}
                 </p>
                 <h3 className="mt-1 font-display text-xl">{item.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-stone">{item.description}</p>
-                <p className="mt-2 text-sm text-muted">
+                <p className="mt-2 text-sm font-medium text-stone">
                   {item.duration} · Ages {item.ages} · Stroller: {item.stroller}
                 </p>
                 <p className="mt-2 text-sm text-stone">{item.shabbatNote}</p>

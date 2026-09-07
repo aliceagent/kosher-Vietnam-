@@ -25,15 +25,15 @@ export function HomeHub() {
         <img
           src="/destinations/halong.jpg"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-50"
+          className="absolute inset-0 h-full w-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/65" />
         <div className="relative px-4 pb-8 pt-6">
-          <Kicker>Kosher · Shomer Shabbat · Vietnam</Kicker>
-          <h1 className="mt-3 font-display text-[2.1rem] font-medium leading-[1.05]">
+          <Kicker className="text-lantern-soft">Kosher · Shomer Shabbat · Vietnam</Kicker>
+          <h1 className="mt-3 font-display text-[2.1rem] font-semibold leading-[1.05] text-white">
             Vietnam for the kosher traveler.
           </h1>
-          <p className="mt-3 max-w-md text-[15px] leading-relaxed text-mist/80">
+          <p className="mt-3 max-w-md text-[16px] font-medium leading-relaxed text-white">
             Plan the week around Friday. Eat where it is actually kosher. Walk when the cars stop.
           </p>
           <form action="/search" className="mt-5">
@@ -44,32 +44,34 @@ export function HomeHub() {
               id="q"
               name="q"
               placeholder="Where are you going?"
-              className="min-h-12 w-full rounded-2xl bg-white px-4 text-base text-ink outline-none"
+              className="min-h-12 w-full rounded-2xl bg-white px-4 text-base font-medium text-ink outline-none placeholder:text-stone"
             />
           </form>
         </div>
       </section>
 
       <section className="px-4 py-5">
-        <Card className="bg-jade text-mist">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-lantern-soft">
+        <Card className="border border-jade/15 bg-white text-ink">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-lacquer">
             Upcoming Shabbat
           </p>
-          <p className="mt-2 font-display text-2xl">{formatLongDate(shabbat.friday)}</p>
-          <p className="mt-1 text-sm text-mist/80">
+          <p className="mt-2 font-display text-2xl font-semibold text-ink">
+            {formatLongDate(shabbat.friday)}
+          </p>
+          <p className="mt-1 text-sm font-medium text-stone">
             {shabbat.parsha} · {shabbat.hebrewDate}
           </p>
           <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
             <div>
-              <p className="text-mist/60">Hanoi candles</p>
-              <p className="text-lg font-semibold">{shabbat.candles?.candlesLabel}</p>
+              <p className="font-semibold text-stone">Hanoi candles</p>
+              <p className="text-2xl font-bold text-ink">{shabbat.candles?.candlesLabel}</p>
             </div>
             <div>
-              <p className="text-mist/60">Saigon candles</p>
-              <p className="text-lg font-semibold">{saigon.candles?.candlesLabel}</p>
+              <p className="font-semibold text-stone">Saigon candles</p>
+              <p className="text-2xl font-bold text-ink">{saigon.candles?.candlesLabel}</p>
             </div>
           </div>
-          <Link href="/shabbat" className="mt-4 inline-flex text-sm font-semibold text-lantern-soft">
+          <Link href="/shabbat" className="mt-4 inline-flex text-sm font-bold text-jade">
             All cities and havdalah →
           </Link>
         </Card>
@@ -81,7 +83,7 @@ export function HomeHub() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex min-h-16 items-center rounded-2xl bg-white px-3 text-sm font-semibold text-jade shadow-[0_1px_0_rgba(7,26,20,0.06)]"
+              className="flex min-h-16 items-center rounded-2xl border border-jade/15 bg-white px-3 text-sm font-bold text-ink"
             >
               {item.label}
             </Link>
