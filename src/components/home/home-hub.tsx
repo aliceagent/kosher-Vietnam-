@@ -38,7 +38,7 @@ export function HomeHub() {
             Plan the week around Friday. Eat where it is actually kosher. Walk when the cars stop.
           </p>
           <p className="mt-4 inline-flex max-w-md rounded-full bg-lantern px-3 py-1.5 text-sm font-bold text-ink">
-            Filled by Jonathan Caras for Shimon Greenspan
+            Created by Jonathan Caras for Shimon Greenspan
           </p>
           <form action="/search" className="mt-5">
             <label className="sr-only" htmlFor="q">
