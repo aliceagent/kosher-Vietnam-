@@ -273,7 +273,7 @@ export function searchSite(query: string): SearchHit[] {
 }
 
 export function groupHits(hits: SearchHit[]) {
-  const order = ["Destinations", "Jewish", "Attractions", "Transport", "Phrases", "Guides", "Tools"];
+  const preferred = ["Destinations", "Jewish", "Attractions", "Transport", "Phrases", "Guides", "Tools"];
   const map = new Map<string, SearchHit[]>();
   for (const hit of hits) {
     const list = map.get(hit.group) ?? [];
@@ -281,7 +281,13 @@ export function groupHits(hits: SearchHit[]) {
     list.push(hit);
     map.set(hit.group, list);
   }
-  return order.filter((key) => map.has(key)).map((key) => ({ group: key, hits: map.get(key)! }));
+  return [...map.entries()]
+    .sort((a, b) => {
+      const byScore = (b[1][0]?.score ?? 0) - (a[1][0]?.score ?? 0);
+      if (byScore) return byScore;
+      return preferred.indexOf(a[0]) - preferred.indexOf(b[0]);
+    })
+    .map(([group, items]) => ({ group, hits: items }));
 }
 
 export function catalogForKimi(query: string) {
