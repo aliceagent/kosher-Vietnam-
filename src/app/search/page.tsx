@@ -9,7 +9,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
   return (
     <main className="pb-8">
       <PageIntro kicker="Search" title="Ask it the way you would ask a friend.">
-        Orah first. Kimi searches the web. Cards stay short — tap Read more.
+        Orah answers instantly. Kimi HighSpeed adds live notes. Cards stay short — tap Read more.
       </PageIntro>
       <SearchResults initial={q} />
     </main>

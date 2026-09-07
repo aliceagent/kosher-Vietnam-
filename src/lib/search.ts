@@ -74,7 +74,8 @@ function tokensOf(query: string) {
       .replace(/saigon|hcmc/gi, "ho chi minh")
       .replace(/shabbos/gi, "shabbat"),
   );
-  const base = folded.split(" ").filter((part) => part.length > 1);
+  const stop = new Set(["to", "the", "and", "for", "in", "of", "on", "at"]);
+  const base = folded.split(" ").filter((part) => part.length > 1 && !stop.has(part));
   const extra: string[] = [];
   for (const part of base) {
     extra.push(...(SYNONYMS[part] ?? []).map(fold));
