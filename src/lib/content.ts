@@ -1,11 +1,20 @@
+import { airportGuides } from "@/content/airports";
+import { apps } from "@/content/apps";
 import { attractions } from "@/content/attractions";
+import { checklist } from "@/content/checklist";
 import { communities } from "@/content/communities";
 import { countries, previewDestinations } from "@/content/countries";
 import { country, destinations } from "@/content/destinations";
 import { guides } from "@/content/guides";
 import { itineraries } from "@/content/itineraries";
+import { neighborhoods } from "@/content/neighborhoods";
+import { extraPois } from "@/content/pois";
+import { phrases } from "@/content/phrases";
+import { routes } from "@/content/routes";
 import { stayAreas } from "@/content/stays";
+import { withTravel } from "@/content/travel-profile";
 import { venues } from "@/content/venues";
+import type { AttractionFlag } from "@/lib/schema";
 
 export function getCountries() {
   return countries;
@@ -16,12 +25,12 @@ export function getCountry(slug = "vietnam") {
 }
 
 export function allDestinations() {
-  return [...destinations, ...previewDestinations];
+  return [...destinations, ...previewDestinations].map(withTravel);
 }
 
 export function getDestinations(countrySlug?: string) {
   const list = allDestinations();
-  return countrySlug ? list.filter((item) => item.countrySlug === countrySlug) : destinations;
+  return countrySlug ? list.filter((item) => item.countrySlug === countrySlug) : destinations.map(withTravel);
 }
 
 export function getDestination(slug: string) {
@@ -42,6 +51,61 @@ export function getStayAreas(slug?: string) {
 
 export function getAttractions(slug?: string) {
   return slug ? attractions.filter((item) => item.destinationSlug === slug) : attractions;
+}
+
+export function getAttraction(id: string) {
+  return attractions.find((item) => item.id === id);
+}
+
+export function getNeighborhoods(slug?: string) {
+  return slug ? neighborhoods.filter((item) => item.destinationSlug === slug) : neighborhoods;
+}
+
+export function getNeighborhood(id: string) {
+  return neighborhoods.find((item) => item.id === id);
+}
+
+export function getRoutes() {
+  return routes;
+}
+
+export function getRoute(id: string) {
+  return routes.find((item) => item.id === id);
+}
+
+export function getRoutesFrom(slug: string) {
+  return routes.filter((item) => item.fromSlug === slug || item.toSlug === slug);
+}
+
+export function getRouteBetween(from: string, to: string) {
+  return routes.find(
+    (item) =>
+      (item.fromSlug === from && item.toSlug === to) || (item.fromSlug === to && item.toSlug === from),
+  );
+}
+
+export function getApps() {
+  return apps;
+}
+
+export function getPhrases() {
+  return phrases;
+}
+
+export function getAirportGuides() {
+  return airportGuides;
+}
+
+export function getAirportGuide(code: string) {
+  return airportGuides.find((item) => item.code.toLowerCase() === code.toLowerCase());
+}
+
+export function getChecklist() {
+  return checklist;
+}
+
+export function getExtraPois() {
+  return extraPois;
 }
 
 export function getGuides() {
@@ -67,7 +131,11 @@ export function getNearby(slug: string) {
 }
 
 export function shabbatCities() {
-  return destinations.filter((item) => country.shabbatCities.includes(item.slug));
+  return getDestinations().filter((item) => country.shabbatCities.includes(item.slug));
+}
+
+export function attractionsByFlag(slug: string, flag: AttractionFlag) {
+  return getAttractions(slug).filter((item) => item.flags.includes(flag));
 }
 
 export function catalog() {
@@ -78,6 +146,11 @@ export function catalog() {
     venues,
     stayAreas,
     attractions,
+    neighborhoods,
+    routes,
+    apps,
+    phrases,
+    airportGuides,
     guides,
     itineraries,
   };

@@ -4,6 +4,7 @@ export const stayAreas: StayArea[] = [
   {
     id: "hanoi-tay-ho",
     destinationSlug: "hanoi",
+    neighborhoodId: "hanoi-tay-ho",
     name: "Tây Hồ / Tô Ngọc Vân",
     walkToCommunity: "Aim for a hotel you can walk to the confirmed Chabad pin.",
     familyFit: "Quieter than the Old Quarter; better for sleep with children.",
@@ -19,6 +20,7 @@ export const stayAreas: StayArea[] = [
   {
     id: "hanoi-old-quarter",
     destinationSlug: "hanoi",
+    neighborhoodId: "hanoi-old-quarter",
     name: "Hoàn Kiếm / Old Quarter",
     walkToCommunity: "Often too far to walk to Tây Hồ Chabad. Use a car before Shabbat.",
     familyFit: "Atmospheric but noisy and tight for strollers.",
@@ -32,6 +34,7 @@ export const stayAreas: StayArea[] = [
   {
     id: "hcmc-d1",
     destinationSlug: "ho-chi-minh-city",
+    neighborhoodId: "hcmc-dakao",
     name: "District 1 / Đa Kao",
     walkToCommunity: "Best chance of a walking-radius hotel to Chabad. Measure the alley route yourself.",
     familyFit: "Central, loud, convenient. Look for family rooms or an apartment with a fridge.",
@@ -46,6 +49,7 @@ export const stayAreas: StayArea[] = [
   {
     id: "hoian-cua-dai",
     destinationSlug: "hoi-an",
+    neighborhoodId: "hoian-cua-dai",
     name: "Cửa Đại / Cẩm Châu",
     walkToCommunity: "Closest published area to Chabad on Cửa Đại.",
     familyFit: "Larger hotels and some apartments. Good if you want a shorter Friday walk.",

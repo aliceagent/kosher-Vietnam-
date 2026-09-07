@@ -1,4 +1,11 @@
-export type VerificationStatus = "sourced" | "unverified" | "needs-confirm";
+export type VerificationStatus =
+  | "evergreen"
+  | "sourced"
+  | "recently-checked"
+  | "community-verified"
+  | "live-external"
+  | "needs-confirm"
+  | "unverified";
 
 export type Verification = {
   status: VerificationStatus;
@@ -14,11 +21,55 @@ export type GeoPoint = {
 
 export type Region = "north" | "central" | "south";
 
+export type AgeBand = "0-2" | "3-5" | "6-9" | "10-12" | "teens" | "adults";
+
 export type KashrutClass =
   | "community-operated"
   | "certified-kosher"
   | "kosher-products"
   | "vegetarian-not-kosher";
+
+export type AttractionCategory =
+  | "must-see"
+  | "nature"
+  | "viewpoint"
+  | "beach"
+  | "cave"
+  | "boat"
+  | "hike"
+  | "market"
+  | "museum"
+  | "historic"
+  | "architecture"
+  | "kids"
+  | "indoor"
+  | "adventure"
+  | "evening"
+  | "day-trip"
+  | "workshop"
+  | "neighborhood-walk";
+
+export type AttractionFlag =
+  | "must-do"
+  | "kids"
+  | "teens"
+  | "rainy-day"
+  | "quick-stop"
+  | "half-day"
+  | "full-day"
+  | "hidden-gem"
+  | "skip-if-short"
+  | "book-ahead"
+  | "free"
+  | "shabbat-walk"
+  | "evening"
+  | "day-trip";
+
+export type IndoorKind = "indoor" | "outdoor" | "mixed";
+export type TicketKind = "free" | "paid";
+export type BookingKind = "none" | "recommended" | "required";
+export type StrollerKind = "yes" | "mixed" | "no";
+export type ShabbatFit = "walk-ok" | "streets-ok-skip-tickets" | "not-shabbat";
 
 export type Destination = {
   slug: string;
@@ -56,6 +107,18 @@ export type Destination = {
   gettingAround: string;
   familyNotes: string;
   nearby: string[];
+  bestFor?: string[];
+  whoWillLove?: string;
+  whoMightNot?: string;
+  feelsLike?: string;
+  dailyBudget?: { low: string; typical: string; note: string };
+  minNights?: number;
+  maxNights?: number;
+  neighborhoodIds?: string[];
+  dayTripIds?: string[];
+  continueTrip?: string[];
+  familyByAge?: Partial<Record<AgeBand, string>>;
+  jewishSummary?: string;
 };
 
 export type Community = {
@@ -64,6 +127,7 @@ export type Community = {
   name: string;
   kind: "chabad" | "synagogue" | "community";
   address: string;
+  addressVi?: string;
   addressNote?: string;
   phone?: string;
   whatsapp?: string;
@@ -89,12 +153,28 @@ export type CountryRecord = {
   shabbatCities: string[];
 };
 
+export type SavedKind =
+  | "destination"
+  | "attraction"
+  | "community"
+  | "venue"
+  | "stay"
+  | "phrase"
+  | "route"
+  | "Destination"
+  | "Chabad"
+  | "Attraction"
+  | string;
+
 export type SavedItem = {
   id: string;
   href: string;
   title: string;
-  kind: string;
+  kind: SavedKind;
   blurb: string;
+  destinationSlug?: string;
+  sortIndex?: number;
+  collection?: "trip";
 };
 
 export type Submission = {
@@ -123,12 +203,14 @@ export type Venue = {
   website?: string;
   mapsQuery: string;
   notes: string;
+  coords?: GeoPoint;
   verification: Verification;
 };
 
 export type StayArea = {
   id: string;
   destinationSlug: string;
+  neighborhoodId?: string;
   name: string;
   walkToCommunity?: string;
   familyFit: string;
@@ -141,14 +223,179 @@ export type Attraction = {
   id: string;
   destinationSlug: string;
   name: string;
-  category: string;
+  localName?: string;
+  neighborhoodId?: string;
+  category: AttractionCategory | string;
   description: string;
+  whyGo: string;
   duration: string;
-  ages: string;
-  stroller: string;
-  walkingFromJewishArea?: string;
-  shabbatNote: string;
+  durationMin: number;
+  durationMax: number;
+  indoor: IndoorKind;
+  rainOk: boolean;
+  heatOk: boolean;
+  shade: boolean;
+  aircon: boolean;
+  ticket: TicketKind;
+  priceAdult?: string;
+  priceChild?: string;
+  priceNote?: string;
+  booking: BookingKind;
+  coords?: GeoPoint;
+  address?: string;
+  addressVi?: string;
   religiousSite: boolean;
+  shabbat: ShabbatFit;
+  shabbatNote: string;
+  ages: AgeBand[] | string;
+  stroller: StrollerKind | string;
+  walkingFromJewishArea?: string;
+  flags: AttractionFlag[];
+  grabMin?: number;
+  exclusiveWith?: string[];
+  verification: Verification;
+};
+
+export type Neighborhood = {
+  id: string;
+  destinationSlug: string;
+  name: string;
+  localName?: string;
+  whyStay: string;
+  atmosphere: string;
+  familyFit: string;
+  jewishRelevance: string;
+  transport: string;
+  nightlife: string;
+  shabbatWalk?: string;
+};
+
+export type TransportMode = "van" | "sleeper-bus" | "train" | "driver" | "flight" | "boat" | "grab";
+
+export type TransportOption = {
+  mode: TransportMode;
+  name: string;
+  durationMin: number;
+  durationMax: number;
+  cost: string;
+  comfort: string;
+  kids: string;
+  luggage: string;
+  overnight: boolean;
+  motion: string;
+  book: string;
+  pickup: string;
+  dropoff: string;
+  fridayNote: string;
+};
+
+export type TransportRoute = {
+  id: string;
+  fromSlug: string;
+  toSlug: string;
+  options: TransportOption[];
+  recommendation: {
+    family: string;
+    backpacker: string;
+    overnight: string;
+    friday: string;
+  };
+  verification: Verification;
+};
+
+export type AppRecord = {
+  id: string;
+  category: string;
+  name: string;
+  why: string;
+  priority: "essential" | "useful" | "optional";
+  ios?: string;
+  android?: string;
+  offline: boolean;
+  setupBefore: boolean;
+  needsPhone: boolean;
+  needsVnNumber: boolean;
+  english: boolean;
+  setup: string;
+  tips: string;
+  verification: Verification;
+};
+
+export type PhraseCategory =
+  | "basics"
+  | "directions"
+  | "grab"
+  | "hotel"
+  | "shopping"
+  | "food"
+  | "medical"
+  | "family"
+  | "emergency"
+  | "numbers"
+  | "travel";
+
+export type Phrase = {
+  id?: string;
+  category?: PhraseCategory;
+  en: string;
+  vi: string;
+  say: string;
+  caution?: string;
+  showToDriver?: boolean;
+  saveable?: boolean;
+};
+
+export type AirportGuide = {
+  code: string;
+  destSlug: string;
+  name: string;
+  immigration: string;
+  baggage: string;
+  sim: string;
+  atm: string;
+  grab: string;
+  taxiWarning: string;
+  wifi: string;
+  toDistricts: { area: string; minutes: string; cost: string }[];
+  nightArrival: string;
+  fridayNote: string;
+};
+
+export type ChecklistItem = {
+  id: string;
+  section: string;
+  title: string;
+  body: string;
+  essential: boolean;
+};
+
+export type MapPoiKind =
+  | "attraction"
+  | "chabad"
+  | "kosher"
+  | "stay"
+  | "walk"
+  | "city"
+  | "neighborhood"
+  | "hospital"
+  | "pharmacy"
+  | "atm"
+  | "airport"
+  | "station"
+  | "emergency";
+
+export type MapPin = {
+  id: string;
+  title: string;
+  kind: MapPoiKind;
+  href?: string;
+  blurb: string;
+  coords: GeoPoint;
+  walkMins?: number;
+  shabbatOk: boolean;
+  flags?: AttractionFlag[];
+  address?: string;
+  addressVi?: string;
 };
 
 export type ItineraryDay = {
@@ -177,9 +424,33 @@ export type Guide = {
   sections: { heading: string; body: string }[];
 };
 
-export type Phrase = {
-  en: string;
-  vi: string;
-  say: string;
-  caution?: string;
+export type PlanBlockKind = "attraction" | "travel" | "meals" | "prep" | "rest" | "arrive";
+
+export type PlanBlock = {
+  start: string;
+  end: string;
+  kind: PlanBlockKind;
+  title: string;
+  note: string;
+  attractionId?: string;
+  routeId?: string;
+  grabMin?: number;
+  kids?: string;
+  book?: string;
+};
+
+export type PlanDay = {
+  date: string;
+  destSlug: string;
+  destName: string;
+  shabbat: boolean;
+  blocks: PlanBlock[];
+};
+
+export type OfflineBundleMeta = {
+  id: string;
+  title: string;
+  destSlugs: string[];
+  updatedAt: string;
+  bytesEstimate: string;
 };

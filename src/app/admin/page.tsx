@@ -12,7 +12,11 @@ export default function AdminPage() {
     ["Communities", data.communities.length, "/chabad"],
     ["Kosher venues", data.venues.length, "/kosher"],
     ["Stay areas", data.stayAreas.length, "/stay"],
-    ["Attractions", data.attractions.length, "/vietnam"],
+    ["Attractions", data.attractions.length, "/vietnam/things-to-do"],
+    ["Neighborhoods", data.neighborhoods.length, "/stay"],
+    ["Routes", data.routes.length, "/vietnam/go"],
+    ["Apps", data.apps.length, "/guides/apps"],
+    ["Phrases", data.phrases.length, "/phrases"],
     ["Guides", data.guides.length, "/guides"],
     ["Itineraries", data.itineraries.length, "/itineraries"],
   ] as const;

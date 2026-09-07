@@ -1,0 +1,58 @@
+import type { AirportGuide } from "@/lib/schema";
+
+export const airportGuides: AirportGuide[] = [
+  {
+    code: "HAN",
+    destSlug: "hanoi",
+    name: "Nội Bài (HAN)",
+    immigration: "20–90 minutes. Have hotel address and return flight. E-visa QR ready offline.",
+    baggage: "Belts are slow at peak. Budget 30 minutes.",
+    sim: "eSIM on before you leave the jet, or Viettel/Mobifone booth after customs. You need data for Grab.",
+    atm: "Bank ATMs after customs. Decline DCC. Count zeros.",
+    grab: "Follow Grab / ride-hailing signs. Cars, not bikes, with children. Pin the hotel before you open the app.",
+    taxiWarning: "Airport touts quoting dollars. If they refuse the app, walk away.",
+    wifi: "Airport Wi-Fi exists and is flaky. Don’t rely on it for OTP.",
+    toDistricts: [
+      { area: "Tây Hồ / Chabad cluster", minutes: "45–90", cost: "Grab car — confirm in app" },
+      { area: "Old Quarter / Hoàn Kiếm", minutes: "45–90", cost: "Grab car — confirm in app" },
+    ],
+    nightArrival: "Grab still runs. Have the hotel night number. Don’t start Ninh Bình.",
+    fridayNote: "Land by early afternoon. Immigration plus a 45–90 minute transfer can erase a late arrival. Order food before you leave the airport if you are already tight.",
+  },
+  {
+    code: "SGN",
+    destSlug: "ho-chi-minh-city",
+    name: "Tân Sơn Nhất (SGN)",
+    immigration: "20–90 minutes. International and domestic are different worlds — know which terminal.",
+    baggage: "Peak hours stall. 30 minutes is not pessimistic.",
+    sim: "Booths after arrivals. eSIM is smoother if the phone is unlocked.",
+    atm: "After baggage. Decline conversion.",
+    grab: "Grab cars from the official pickup. District 1 is 25–60 minutes depending on rain.",
+    taxiWarning: "Dollar quotes and ‘broken meter.’ Use the app.",
+    wifi: "Present, overcrowded.",
+    toDistricts: [
+      { area: "District 1 / Đa Kao (Chabad)", minutes: "25–60", cost: "Grab car — confirm in app" },
+      { area: "District 7", minutes: "30–50", cost: "Grab car — confirm in app" },
+    ],
+    nightArrival: "Traffic thins but motorbikes don’t. Pre-book the hotel.",
+    fridayNote: "Land early afternoon. Pre-order Chabad meals. Do not start a Mekong trip.",
+  },
+  {
+    code: "DAD",
+    destSlug: "da-nang",
+    name: "Đà Nẵng (DAD)",
+    immigration: "Usually faster than HAN/SGN, still not ‘ten minutes.’",
+    baggage: "One belt can hide your bag. Stay anyway.",
+    sim: "Smaller booths. eSIM still wins.",
+    atm: "After arrivals.",
+    grab: "Cars to Hội An 45–60 minutes. Beach hotels 15–25.",
+    taxiWarning: "Fixed ‘Hội An 25 dollars’ from touts. Open Grab.",
+    wifi: "OK for a message, not for a visa PDF.",
+    toDistricts: [
+      { area: "Hội An / Cửa Đại (Chabad)", minutes: "45–70", cost: "Grab car — confirm in app" },
+      { area: "Mỹ Khê beach", minutes: "15–25", cost: "Grab car — confirm in app" },
+    ],
+    nightArrival: "Fine for a beach hotel. Still a poor Friday if you need Hội An meals.",
+    fridayNote: "Land and transfer to Hội An with a large buffer. Reserve meals. Tailor pickup is not a Friday 16:00 job.",
+  },
+];

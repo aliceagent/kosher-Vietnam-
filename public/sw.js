@@ -1,5 +1,18 @@
-const CACHE = "orah-v1";
-const CORE = ["/", "/vietnam", "/kosher", "/shabbat", "/plan", "/emergency", "/saved", "/manifest.json"];
+const CACHE = "orah-v2";
+const CORE = [
+  "/",
+  "/vietnam",
+  "/kosher",
+  "/shabbat",
+  "/plan",
+  "/emergency",
+  "/saved",
+  "/phrases",
+  "/today",
+  "/guides/before",
+  "/guides/apps",
+  "/manifest.json",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
@@ -20,7 +33,12 @@ self.addEventListener("fetch", (event) => {
     caches.match(req).then((cached) => {
       const fetchPromise = fetch(req)
         .then((res) => {
-          if (res.ok && (req.url.includes("/destinations/") || req.mode === "navigate")) {
+          if (
+            res.ok &&
+            (req.url.includes("/destinations/") ||
+              req.url.includes("/offline/") ||
+              req.mode === "navigate")
+          ) {
             const copy = res.clone();
             caches.open(CACHE).then((cache) => cache.put(req, copy));
           }

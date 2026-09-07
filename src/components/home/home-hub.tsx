@@ -9,8 +9,8 @@ const actions = [
   { href: "/kosher", label: "Find kosher food" },
   { href: "/chabad", label: "Find Chabad" },
   { href: "/shabbat", label: "Shabbat times" },
-  { href: "/stay", label: "Where to stay" },
-  { href: "/guides/visas", label: "Vietnam basics" },
+  { href: "/vietnam/things-to-do", label: "Things to do" },
+  { href: "/today", label: "What today?" },
 ];
 
 export function HomeHub() {
@@ -131,15 +131,19 @@ export function HomeHub() {
       <section className="px-4 pb-8">
         <Kicker>Start here</Kicker>
         <div className="mt-3 flex flex-wrap gap-2">
+          <ChipLink href="/guides/before">Before you go</ChipLink>
+          <ChipLink href="/today">Today</ChipLink>
+          <ChipLink href="/vietnam/things-to-do">Things to do</ChipLink>
+          <ChipLink href="/phrases">Phrases</ChipLink>
+          <ChipLink href="/map">Map & Near me</ChipLink>
+          <ChipLink href="/vietnam/go">City to city</ChipLink>
           <ChipLink href="/itineraries">Itineraries</ChipLink>
           <ChipLink href="/family">Family</ChipLink>
-          <ChipLink href="/guides/visas">Visas</ChipLink>
+          <ChipLink href="/guides/apps">Apps</ChipLink>
+          <ChipLink href="/guides/airports">Airports</ChipLink>
           <ChipLink href="/emergency">Emergency</ChipLink>
-          <ChipLink href="/submit">Update a listing</ChipLink>
-          <ChipLink href="/guides">Phrases & basics</ChipLink>
-          <ChipLink href="/map">Shabbat map</ChipLink>
+          <ChipLink href="/saved">My trip</ChipLink>
           <ChipLink href="/countries">More countries</ChipLink>
-          <ChipLink href="/saved">Saved offline</ChipLink>
         </div>
         <div className="mt-6">
           <PrimaryLink href="/plan">Build a Shabbat-aware route</PrimaryLink>

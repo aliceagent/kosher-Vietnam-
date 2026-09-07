@@ -2,6 +2,9 @@ import type { SavedItem, Submission } from "@/lib/schema";
 
 const SAVED = "orah-saved";
 const SUBS = "orah-submissions";
+const CHECK = "orah-check";
+const BUNDLES = "orah-bundles";
+const SYNC = "orah-sync";
 
 function read<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
@@ -33,6 +36,52 @@ export function toggleSaved(item: SavedItem) {
     : [item, ...current];
   write(SAVED, next);
   return next;
+}
+
+export function reorderSaved(ids: string[]) {
+  const current = listSaved();
+  const map = new Map(current.map((item) => [item.id, item]));
+  const next = ids.map((id, index) => {
+    const row = map.get(id);
+    return row ? { ...row, sortIndex: index, collection: "trip" as const } : null;
+  }).filter(Boolean) as SavedItem[];
+  const rest = current.filter((item) => !ids.includes(item.id));
+  write(SAVED, [...next, ...rest]);
+}
+
+export function listChecks(): string[] {
+  return read<string[]>(CHECK, []);
+}
+
+export function toggleCheck(id: string) {
+  const current = listChecks();
+  const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id];
+  write(CHECK, next);
+  return next;
+}
+
+export function listBundles(): { id: string; title: string; savedAt: string }[] {
+  return read(BUNDLES, []);
+}
+
+export function markBundle(id: string, title: string) {
+  const current = listBundles().filter((item) => item.id !== id);
+  write(BUNDLES, [{ id, title, savedAt: new Date().toISOString() }, ...current]);
+}
+
+export function removeBundle(id: string) {
+  write(
+    BUNDLES,
+    listBundles().filter((item) => item.id !== id),
+  );
+}
+
+export function getLastSync() {
+  return read<string | null>(SYNC, null);
+}
+
+export function setLastSync(iso: string) {
+  write(SYNC, iso);
 }
 
 export function listSubmissions(): Submission[] {

@@ -26,7 +26,8 @@ export function TripPlanner({
     kosher: true,
     shomer: true,
     destinations: ["hanoi", "ninh-binh", "hoi-an"],
-    pace: "standard" as const,
+    pace: "standard" as "slow" | "standard" | "fast",
+    interests: ["kids"] as string[],
   });
 
   const plan = useMemo(() => buildPlan(form), [form]);
@@ -122,6 +123,44 @@ export function TripPlanner({
         Need kosher meals
       </label>
 
+      <Field label="Pace">
+        <select
+          className={inputClass}
+          value={form.pace}
+          onChange={(e) => setForm({ ...form, pace: e.target.value as typeof form.pace })}
+        >
+          <option value="slow">Slow</option>
+          <option value="standard">Standard</option>
+          <option value="fast">Fast</option>
+        </select>
+      </Field>
+
+      <div>
+        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-jade">Interests</p>
+        <div className="flex flex-wrap gap-2">
+          {["kids", "nature", "history", "beach"].map((tag) => {
+            const on = form.interests.includes(tag);
+            return (
+              <button
+                key={tag}
+                type="button"
+                onClick={() =>
+                  setForm((prev) => ({
+                    ...prev,
+                    interests: on ? prev.interests.filter((item) => item !== tag) : [...prev.interests, tag],
+                  }))
+                }
+                className={`min-h-10 rounded-full px-3 text-xs font-semibold ${
+                  on ? "bg-jade text-mist" : "bg-white text-stone"
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <div>
         <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
           Destinations
@@ -172,6 +211,30 @@ export function TripPlanner({
           <p className="mt-1 text-sm leading-relaxed text-stone">{item.body}</p>
         </Card>
       ))}
+
+      <div className="space-y-3">
+        <h3 className="font-display text-xl">Day-by-day blocks</h3>
+        <p className="text-sm text-stone">Rules, not an LLM. Confirm meals and the current Chabad pin before you book.</p>
+        {plan.days.map((day) => (
+          <Card key={day.date}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-jade">
+              {day.date} · {day.destName}
+              {day.shabbat ? " · Shabbat" : ""}
+            </p>
+            <ul className="mt-3 space-y-2">
+              {day.blocks.map((block) => (
+                <li key={`${day.date}-${block.start}-${block.title}`} className="border-t border-jade/10 pt-2 first:border-0 first:pt-0">
+                  <p className="text-sm font-semibold text-ink">
+                    {block.start}–{block.end} · {block.title}
+                  </p>
+                  <p className="text-sm text-stone">{block.note}</p>
+                  {block.book ? <p className="text-xs font-medium text-lacquer">Booking: {block.book}</p> : null}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
 
       <p className="text-xs font-medium text-stone">
         This is a logistics sketch, not a pesak. Confirm meals and the current Chabad address before you book.

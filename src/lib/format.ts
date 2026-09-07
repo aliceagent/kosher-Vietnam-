@@ -10,10 +10,22 @@ export function waUrl(phone: string) {
   return `https://wa.me/${phone.replace(/[^\d]/g, "")}`;
 }
 
-export function verificationLabel(status: "sourced" | "unverified" | "needs-confirm") {
+export function verificationLabel(status: import("@/lib/schema").VerificationStatus) {
+  if (status === "evergreen") return "Evergreen — still confirm anything time-sensitive";
   if (status === "sourced") return "Sourced — confirm before travel";
+  if (status === "recently-checked") return "Recently checked — still confirm hours";
+  if (status === "community-verified") return "Community verified — confirm before travel";
+  if (status === "live-external") return "Live/external — prices and hours go stale";
   if (status === "needs-confirm") return "Conflicting sources — confirm";
   return "Unverified";
+}
+
+export function appleMapsUrl(query: string) {
+  return `https://maps.apple.com/?q=${encodeURIComponent(query)}`;
+}
+
+export function mapsDirUrl(lat: number, lng: number) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`;
 }
 
 export function formatTime(date: Date, tzid: string) {

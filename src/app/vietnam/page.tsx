@@ -11,6 +11,17 @@ export default function VietnamPage() {
       <PageIntro kicker="Vietnam" title="Every city, tagged for Friday.">
         Strong Shabbat bases first. Weekday-only towns stay on the map — they just should not own Friday night.
       </PageIntro>
+      <div className="mt-4 flex flex-wrap gap-2 px-4">
+        <Link href="/vietnam/things-to-do" className="rounded-full bg-jade px-3 py-2 text-xs font-semibold text-mist">
+          Things to do
+        </Link>
+        <Link href="/vietnam/go" className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-jade">
+          City to city
+        </Link>
+        <Link href="/today" className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-jade">
+          Today
+        </Link>
+      </div>
       <div className="mt-5 space-y-3 px-4">
         {dests.map((item) => (
           <Link key={item.slug} href={`/vietnam/${item.slug}`} className="block overflow-hidden rounded-2xl bg-ink text-mist">
