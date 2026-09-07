@@ -17,6 +17,7 @@ const sans = Karla({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://orah-kosher-vietnam.vercel.app"),
   title: {
     default: "Orah — Kosher & Shomer Shabbat Vietnam",
     template: "%s · Orah",
@@ -24,7 +25,16 @@ export const metadata: Metadata = {
   description:
     "Vietnam travel guide for English-speaking Jewish travelers: kosher food, Chabad, Shabbat times, and itineraries that plan around Friday.",
   manifest: "/manifest.json",
+  applicationName: "Orah",
   openGraph: {
+    title: "Orah — Kosher & Shomer Shabbat Vietnam",
+    description: "Plan Vietnam around Shabbat. Kosher kitchens, walking neighborhoods, Friday arrival math.",
+    siteName: "Orah",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Orah — Kosher & Shomer Shabbat Vietnam",
     description: "Plan Vietnam around Shabbat. Kosher kitchens, walking neighborhoods, Friday arrival math.",
   },
