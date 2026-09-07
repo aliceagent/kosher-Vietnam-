@@ -12,6 +12,12 @@ type KimiCard = {
   url?: string;
 };
 
+type KimiState = {
+  cards: KimiCard[];
+  error?: string;
+  configured?: boolean;
+};
+
 const SUGGESTIONS = ["kosher Hanoi", "rainy Hội An", "Hanoi to Sapa", "bathroom", "Shabbat times"];
 
 function isInternal(url?: string) {
@@ -20,11 +26,13 @@ function isInternal(url?: string) {
 
 export function SearchResults({ initial }: { initial: string }) {
   const [q, setQ] = useState(initial);
-  const [kimi, setKimi] = useState<{ cards: KimiCard[]; error?: string }>({ cards: [] });
+  const [kimi, setKimi] = useState<KimiState>({ cards: [] });
   const [loading, setLoading] = useState(false);
   const [liveNote, setLiveNote] = useState("");
   const ready = q.trim().length >= 2;
   const kimiCards = ready ? kimi.cards : [];
+  const showKimi =
+    ready && kimi.configured === true && (loading || kimiCards.length > 0 || Boolean(kimi.error));
   const hits = useMemo(() => (ready ? searchSite(q) : []), [q, ready]);
   const groups = useMemo(() => groupHits(hits), [hits]);
 
@@ -43,21 +51,25 @@ export function SearchResults({ initial }: { initial: string }) {
       setLiveNote("");
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`, { signal: controller.signal });
-        const data = (await res.json()) as { kimi?: { cards: KimiCard[]; error?: string } };
-        const first = data.kimi ?? { cards: [] };
+        const data = (await res.json()) as { kimi?: KimiState };
+        const first = data.kimi ?? { cards: [], configured: false };
         setKimi(first);
         setLoading(false);
-        if (first.error === "Kimi is not configured." || controller.signal.aborted) return;
+        if (first.configured === false || controller.signal.aborted) return;
         setLiveNote("Checking the web…");
         const liveRes = await fetch(`/api/search?q=${encodeURIComponent(query)}&live=1`, {
           signal: controller.signal,
         });
-        const liveData = (await liveRes.json()) as { kimi?: { cards: KimiCard[]; error?: string } };
+        const liveData = (await liveRes.json()) as { kimi?: KimiState };
         if (liveData.kimi?.cards?.length) setKimi(liveData.kimi);
         else if (liveData.kimi?.error && !first.cards.length) setKimi(liveData.kimi);
       } catch (error) {
         if ((error as { name?: string }).name !== "AbortError") {
-          setKimi({ cards: [], error: "Kimi search failed." });
+          setKimi((prev) => ({
+            cards: [],
+            error: "Kimi search failed.",
+            configured: prev.configured,
+          }));
         }
       } finally {
         setLoading(false);
@@ -120,7 +132,7 @@ export function SearchResults({ initial }: { initial: string }) {
         </div>
       ) : null}
 
-      {ready ? (
+      {showKimi ? (
         <section className="mt-5">
           <div className="mb-2 flex items-baseline justify-between gap-3">
             <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-lantern">Kimi live</p>

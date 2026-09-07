@@ -184,18 +184,22 @@ export async function kimiSearch(
   query: string,
   catalogLines: string[],
   opts: { live?: boolean } = {},
-): Promise<{ cards: KimiCard[]; error?: string }> {
-  if (!key()) return { cards: [], error: "Kimi is not configured." };
+): Promise<{ cards: KimiCard[]; error?: string; configured: boolean }> {
+  if (!key()) return { cards: [], configured: false };
 
   try {
     if (opts.live) {
       const live = await kimiLive(query, catalogLines);
-      if (live.cards.length) return live;
-      return kimiFast(query, catalogLines);
+      if (live.cards.length) return { ...live, configured: true };
+      return { ...(await kimiFast(query, catalogLines)), configured: true };
     }
-    return kimiFast(query, catalogLines);
+    return { ...(await kimiFast(query, catalogLines)), configured: true };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Kimi search failed.";
-    return { cards: [], error: message.includes("abort") ? "Kimi timed out." : message };
+    return {
+      cards: [],
+      configured: true,
+      error: message.includes("abort") ? "Kimi timed out." : message,
+    };
   }
 }
